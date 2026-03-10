@@ -57,16 +57,15 @@
   --space-xl:      96px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   color: var(--text-primary);
   background: var(--surface);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
-img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
@@ -124,11 +123,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid rgba(59,111,212,.15);
 }
 .section-title { font-family: 'Inter', sans-serif;
-  font-size: clamp(20px, 2.2vw, 30px);
-  font-weight: 700; line-height: 1.25;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 700; line-height: 1.2;
   color: var(--text-primary);
   margin-bottom: 14px;
-  letter-spacing: -.015em;
+  letter-spacing: -.02em;
 }
 .section-title .hl {
   color: var(--accent);
@@ -140,8 +139,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 17px; color: var(--text-secondary);
   line-height: 1.7; max-width: 600px;
 }
-.section-center { text-align: left; }
-.section-center .section-sub { max-width: 600px; }
+.section-center { text-align: center; }
+.section-center .section-sub { max-width: 600px; margin: 0 auto; }
 
 
 /* ── Grid patterns for all sections ── */
@@ -403,9 +402,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .hero-title {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(18px, 2vw, 26px);
-  font-weight: 700; line-height: 1.2;
-  color: var(--text-primary); letter-spacing: -.02em;
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 800; line-height: 1.15;
+  color: var(--text-primary); letter-spacing: -.025em;
   margin-bottom: 18px;
   animation: fadeUp .6s .08s ease both;
 }
@@ -556,7 +555,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    GUARANTEE STRIP (7-day money back)
 ══════════════════════════════════════════════════ */
 .guarantee-strip {
-  background: linear-gradient(135deg, #0F4C2A 0%, #15803D 60%, #16A34A 100%);
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%);
   padding: 20px 0;
   position: relative; overflow: hidden;
 }
@@ -596,9 +595,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 @keyframes shieldPulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.0), 0 0 0 0 rgba(22,163,74,.0); }
-  40%      { box-shadow: 0 0 0 8px rgba(255,255,255,.18), 0 0 0 0 rgba(22,163,74,.0); }
-  70%      { box-shadow: 0 0 0 14px rgba(255,255,255,.05), 0 0 0 6px rgba(22,163,74,.12); }
+  0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.0), 0 0 0 0 rgba(59,111,212,.0); }
+  40%      { box-shadow: 0 0 0 8px rgba(255,255,255,.18), 0 0 0 0 rgba(59,111,212,.0); }
+  70%      { box-shadow: 0 0 0 14px rgba(255,255,255,.05), 0 0 0 6px rgba(59,111,212,.12); }
 }
 .g-pulse {
   animation: shieldPulse 2.6s ease-in-out infinite;
@@ -2252,23 +2251,6 @@ html { scroll-behavior: smooth; }
 .final-guarantee svg { color: var(--accent); flex-shrink: 0; }
 
 /* ── CONTACT FORM ── */
-.contact-section {
-  padding: 72px 0;
-  background: var(--bg);
-  position: relative; overflow: hidden;
-}
-.contact-section::before {
-  content: '';
-  position: absolute; bottom: -60px; right: -40px;
-  width: 380px; height: 380px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(59,111,212,.05) 0%, transparent 65%);
-  pointer-events: none;
-}
-.contact-inner {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: var(--space-lg); align-items: start;
-  position: relative; z-index: 1;
-}
 .contact-info {}
 .contact-info-title {
   font-size: clamp(20px, 2.2vw, 30px); font-weight: 700;
@@ -2842,18 +2824,6 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 /* ══════════════════════════════════════════════
    ZEBRA — alternating section backgrounds
 ══════════════════════════════════════════════ */
-.pain-section     { background: var(--bg) !important; }
-.how-section      { background: var(--surface) !important; }
-.result-section   { background: var(--bg) !important; }
-.demo-section     { background: var(--surface) !important; }
-.features-section { background: var(--bg) !important; }
-.who-section      { background: var(--surface) !important; }
-.compare-section  { background: var(--bg) !important; }
-.privacy-section  { background: var(--surface) !important; }
-.memory-section   { background: var(--bg) !important; }
-.calc-section     { background: var(--surface) !important; }
-.faq-section      { background: var(--bg) !important; }
-.contact-section  { background: var(--surface) !important; }
 .compare-table       { background: var(--surface) !important; }
 .compare-table thead th { background: var(--bg) !important; }
 .compare-table tbody tr:hover { background: var(--bg) !important; }
@@ -2981,6 +2951,1610 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 @media (max-width: 900px) { .who-benefits-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .who-benefits-grid { grid-template-columns: 1fr; } }
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   UNIFIED STYLE OVERRIDE — приведение к единому стилю приложения
+   Два типа фонов: --surface (#fff) и --bg (#F4F6FA)
+   Единый сеточный паттерн для всех светлых секций
+══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Сброс всех индивидуальных ::before и ::after «glow-blob» эффектов ─── */
+/* Они создавали разный визуальный «вес» у каждой секции */
+.pain-section::before,
+.pain-section::after,
+.features-section::before,
+.features-section::after,
+.how-section::before,
+.compare-section::before,
+.compare-section::after,
+.faq-section::before,
+.faq-section::after,
+.memory-section::after,
+.contact-section::before,
+.contact-section::after,
+.result-section::before,
+.result-section::after,
+.who-section::before,
+.who-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* ── Единый сеточный паттерн через ::before для всех светлых секций ─────── */
+.pain-section, .result-section, .how-section,
+.features-section, .compare-section,
+.memory-section, .faq-section,
+.who-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.pain-section::before,
+.result-section::before,
+.how-section::before,
+.features-section::before,
+.compare-section::before,
+.memory-section::before,
+.faq-section::before,
+.who-section::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+  background-image:
+    linear-gradient(rgba(59,111,212,.042) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,111,212,.042) 1px, transparent 1px) !important;
+  background-size: 48px 48px !important;
+}
+
+/* demo-section использует demo-wrapper с собственным паттерном — сохраняем */
+.demo-section::before { content: none !important; display: none !important; }
+.privacy-section::before {
+  background-size: 48px 48px !important;
+}
+
+/* ── Чередование фонов: --surface (белый) и --bg (светло-серый) ──────────── */
+
+/* Тип 1: --surface (#FFFFFF) */
+.result-section,
+.features-section,
+.privacy-section,
+.who-section {
+  background: var(--surface) !important;
+}
+
+/* Тип 2: --bg (#F4F6FA) */
+.pain-section,
+.how-section,
+.demo-section,
+.compare-section,
+.memory-section,
+.faq-section {
+  background: var(--bg) !important;
+}
+
+/* demo-section продолжает how-section визуально */
+.demo-wrapper {
+  background: linear-gradient(160deg, #EEF2FF 0%, #F0F4FF 60%, #EFF6FF 100%) !important;
+}
+
+/* ── Тёмные акцентные секции — без изменений ─────────────────────────────── */
+/* .formats-banner, .custom-section, .final-cta, .footer сохраняют свои тёмные фоны */
+
+/* ── z-index: все контейнеры внутри секций над сеточным ::before ─────────── */
+.pain-section > .container,
+.result-section > .container,
+.how-section > .container,
+.demo-section > .container,
+.features-section > .container,
+.compare-section > .container,
+.privacy-section > .container,
+.memory-section > .container,
+.faq-section > .container,
+.who-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   АДАПТИВНОСТЬ — дополнительные улучшения для мобильных устройств
+══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Уменьшаем отступы секций на мобильных ─────────────────────────────── */
+@media (max-width: 768px) {
+  .pain-section,
+  .result-section,
+  .how-section,
+  .features-section,
+  .compare-section,
+  .privacy-section,
+  .memory-section,
+  .calc-section,
+  .faq-section,
+  .who-section,
+  .contact-section,
+  .custom-section,
+  .final-cta {
+    padding: 56px 0 !important;
+  }
+
+  .demo-section { padding: 0 0 56px !important; }
+
+  /* hero */
+  .hero-inner { grid-template-columns: 1fr !important; gap: 36px !important; }
+  .hero-visual { order: -1; }
+  .hero-title { font-size: clamp(22px, 6vw, 30px) !important; }
+  .hero-lead  { font-size: 15px !important; }
+  .hero-cta   { flex-direction: column; }
+  .hero-cta .btn { width: 100%; justify-content: center; }
+  .hero-badge { font-size: 11px; }
+  .hero-proof { flex-wrap: wrap; }
+  .hero-proof-item { min-width: 80px; }
+  .hero-proof-num  { font-size: 20px; }
+
+  /* section headers */
+  .section-title  { font-size: clamp(18px, 5vw, 24px) !important; }
+  .section-sub    { font-size: 14px !important; }
+  .section-header { margin-bottom: 28px; }
+
+  /* how steps */
+  .how-steps { grid-template-columns: 1fr !important; }
+  .how-step  { flex-direction: row; gap: 16px; padding: 20px !important; }
+  .how-step-num   { margin-bottom: 0 !important; flex-shrink: 0; }
+  .how-step-content { flex: 1; }
+  .how-cta-inner  { flex-direction: column; text-align: center; padding: 20px 24px !important; }
+  .how-cta-text   { text-align: center; }
+
+  /* features */
+  .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* compare */
+  .compare-table-wrap { border-radius: 8px; }
+
+  /* pain grid */
+  .pain-grid { grid-template-columns: 1fr !important; }
+
+  /* custom */
+  .custom-inner  { grid-template-columns: 1fr !important; }
+  .custom-visual { grid-template-columns: 1fr 1fr !important; }
+
+  /* privacy */
+  .privacy-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+  /* memory */
+  .memory-inner    { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .memory-visual   { order: 0; }
+  .memory-why-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* calc */
+  .calc-inner { grid-template-columns: 1fr !important; }
+
+  /* faq */
+  .faq-grid { grid-template-columns: 1fr !important; }
+
+  /* who */
+  .who-grid { grid-template-columns: 1fr !important; }
+  .who-benefits-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* contact */
+  .contact-inner    { grid-template-columns: 1fr !important; }
+  .contact-cta-row  { flex-direction: column; }
+  .contact-cta-btn  { width: 100% !important; justify-content: center !important; }
+
+  /* demo */
+  .demo-wrapper   { padding: 28px 20px !important; }
+  .demo-callouts  { grid-template-columns: 1fr 1fr !important; }
+  .demo-header    { flex-direction: column; }
+
+  /* final cta */
+  .final-cta-btns .btn { width: 100%; justify-content: center; }
+  .final-cta h2   { font-size: clamp(20px, 5.5vw, 28px) !important; }
+
+  /* result chips */
+  .result-chips { gap: 8px; }
+
+  /* formats banner */
+  .formats-facts { display: none; }
+}
+
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+
+  .features-grid  { grid-template-columns: 1fr !important; }
+  .demo-callouts  { grid-template-columns: 1fr !important; }
+  .memory-why-grid { grid-template-columns: 1fr !important; }
+  .who-benefits-grid { grid-template-columns: 1fr !important; }
+
+  .hero-proof { flex-wrap: wrap; justify-content: flex-start; }
+  .hero-proof-item { padding: 0 10px; flex: 0 0 auto; }
+  .hero-proof-item:first-child { padding-left: 0; }
+
+  .calc-res-grid  { grid-template-columns: 1fr !important; }
+  .form-row       { grid-template-columns: 1fr !important; }
+
+  .contact-stats-row { flex-direction: column; gap: 12px; }
+
+  .custom-visual { grid-template-columns: 1fr !important; }
+
+  .how-cta-inner { padding: 16px !important; }
+
+  /* Кнопки в final CTA и hero не обрезаются */
+  .final-cta-btns { flex-direction: column; }
+  .final-cta-btns .btn { width: 100%; justify-content: flex-start; }
+
+  /* FAQ */
+  .faq-q { padding: 14px 14px; }
+  .faq-a  { padding: 12px 14px 14px 46px; }
+
+  /* footer */
+  .footer-tagline { display: none; }
+  .footer-minimal { flex-direction: column; gap: 4px; text-align: center; }
+}
+
+/* ── contact-stats-row  ──────────────────────────────────────────────── */
+.contact-stats-row {
+  display: flex; gap: 0; margin-top: 20px;
+  border-top: 1px solid var(--border); padding-top: 20px;
+}
+.cs-stat {
+  flex: 1; text-align: center;
+  padding: 0 12px;
+  border-right: 1px solid var(--border);
+}
+.cs-stat:last-child { border-right: none; }
+.cs-stat-val {
+  font-size: 20px; font-weight: 700;
+  color: var(--accent); line-height: 1;
+  margin-bottom: 4px;
+}
+.cs-stat-lbl { font-size: 11px; color: var(--text-muted); line-height: 1.3; }
+
+@media (max-width: 480px) {
+  .contact-stats-row { flex-direction: column; gap: 16px; border-top: none; padding-top: 8px; }
+  .cs-stat { border-right: none; padding: 0; text-align: left; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CONVERTER SECTION — синий акцентный блок (замена formats-banner)
+══════════════════════════════════════════════════════════════════════════ */
+.converter-section {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%);
+  padding: 56px 0;
+  position: relative; overflow: hidden;
+}
+.converter-section::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+.converter-section > .container { position: relative; z-index: 1; }
+
+/* Badge override for dark bg */
+.converter-section .section-badge {
+  background: rgba(255,255,255,.15) !important;
+  border-color: rgba(255,255,255,.25) !important;
+  color: #fff !important;
+}
+
+/* Header */
+.converter-header { margin-bottom: 40px; }
+.converter-title {
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 700; color: #fff;
+  line-height: 1.25; letter-spacing: -.02em;
+  margin-bottom: 12px; margin-top: 0;
+}
+.converter-br { display: inline; }
+.converter-sub {
+  font-size: 16px; color: rgba(255,255,255,.75);
+  line-height: 1.7; max-width: 580px;
+}
+
+/* ── Flow layout ── */
+.converter-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1.4fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+/* ── Input files column ── */
+.converter-inputs-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+  margin-bottom: 10px;
+}
+.converter-file {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 10px; padding: 10px 14px;
+  margin-bottom: 8px;
+  opacity: 0;
+  transform: translateX(-16px);
+  animation: cvfSlideIn .45s ease forwards;
+}
+.converter-file:last-child { margin-bottom: 0; }
+.cvf-1 { animation-delay: .1s; }
+.cvf-2 { animation-delay: .25s; }
+.cvf-3 { animation-delay: .4s; }
+.cvf-4 { animation-delay: .55s; }
+@keyframes cvfSlideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+.cvf-ext {
+  font-size: 9px; font-weight: 700; letter-spacing: .05em;
+  padding: 3px 7px; border-radius: 5px; flex-shrink: 0;
+}
+.cvf-info { flex: 1; min-width: 0; }
+.cvf-name {
+  font-size: 12px; font-weight: 600; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cvf-meta { font-size: 10px; color: rgba(255,255,255,.45); margin-top: 1px; }
+.cvf-ok { color: rgba(255,255,255,.5); flex-shrink: 0; }
+
+
+/* ── Middle arrow ── */
+.converter-middle {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.converter-arrow-line {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.converter-arrow-track {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.converter-arrow-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,.4);
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%,100% { opacity: .25; transform: translateY(0); }
+  50%     { opacity: 1;   transform: translateY(-4px); }
+}
+.converter-arrowhead { flex-shrink: 0; margin-top: 2px; }
+
+
+
+/* ── Result mock table ── */
+.converter-output { min-width: 0; }
+.converter-result-mock {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.crm-header {
+  display: flex; align-items: center;
+  background: rgba(255,255,255,.12);
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  padding: 8px 12px;
+  gap: 4px;
+}
+.crm-row {
+  display: flex; align-items: center;
+  padding: 9px 12px; gap: 4px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.crm-row:last-of-type { border-bottom: none; }
+.crm-row--alt { background: rgba(255,255,255,.05); }
+.crm-col {
+  font-size: 11px; color: rgba(255,255,255,.5);
+  font-weight: 600; letter-spacing: .03em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.crm-col--name { flex: 2; min-width: 0; }
+.crm-col--sup  { flex: 1; text-align: center; }
+.crm-col--min  { flex: 1; text-align: center; }
+.crm-name {
+  display: block; font-size: 12px; font-weight: 600;
+  color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.crm-bc  { display: block; font-size: 10px; color: rgba(255,255,255,.4); font-family: 'Inter', monospace; }
+.crm-price { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.75); text-align: center; }
+.crm-price--min {
+  font-weight: 700; color: #86EFAC;
+  background: rgba(34,197,94,.15);
+  border-radius: 4px; padding: 2px 6px;
+}
+.crm-footer {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 10px 12px;
+  background: rgba(255,255,255,.07);
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+.crm-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 600;
+  padding: 4px 10px; border-radius: 99px;
+}
+.crm-badge--green {
+  background: rgba(34,197,94,.2); color: #86EFAC;
+  border: 1px solid rgba(34,197,94,.3);
+}
+.crm-badge--blue {
+  background: rgba(255,255,255,.12); color: rgba(255,255,255,.8);
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+/* ── Bottom facts row ── */
+.converter-facts {
+  display: flex; align-items: center; gap: 0;
+  padding: 24px 28px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+}
+.converter-fact {
+  flex: 1; display: flex; align-items: center; gap: 12px;
+  padding: 0 20px;
+}
+.converter-fact:first-child { padding-left: 0; }
+.converter-fact:last-child  { padding-right: 0; }
+.converter-fact-sep {
+  width: 1px; align-self: stretch;
+  background: rgba(255,255,255,.15); flex-shrink: 0;
+}
+.converter-fact-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.converter-fact-text strong {
+  display: block; font-size: 13px; font-weight: 600;
+  color: #fff; margin-bottom: 3px;
+}
+.converter-fact-text span {
+  font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .converter-flow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  /* Стрелка остаётся вертикальной — на мобильном таблица снизу */
+  .converter-middle {
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 4px 0;
+  }
+  .converter-arrow-line {
+    flex-direction: column; align-items: center; gap: 6px;
+  }
+  .converter-arrow-track { flex-direction: column; gap: 6px; }
+  /* Точки пульсируют вниз */
+  .converter-arrow-dot { animation-name: dotPulse; }
+  /* Поворачиваем наконечник стрелки вниз (был вправо) */
+  .converter-arrowhead { transform: rotate(90deg); }
+  .converter-facts {
+    flex-direction: column; gap: 16px;
+    align-items: flex-start; padding: 20px;
+  }
+  .converter-fact { padding: 0; }
+  .converter-fact-sep { width: 100%; height: 1px; align-self: auto; }
+  .converter-br { display: none; }
+}
+
+@media (max-width: 640px) {
+  .converter-section { padding: 48px 0; }
+  .converter-header { margin-bottom: 28px; }
+  .converter-title { font-size: clamp(18px, 5vw, 24px); }
+  .converter-sub { font-size: 14px; }
+  .converter-file { padding: 8px 10px; }
+  .cvf-name { font-size: 11px; }
+  .crm-col--sup { display: none; }
+  .crm-col--sup:first-of-type { display: block; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CALC SECTION — светлый фон секции, синяя карточка формы
+══════════════════════════════════════════════════════════════════════════ */
+.calc-section {
+  background: var(--bg) !important;
+  padding: 72px 0 !important;
+}
+.calc-section::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -60px !important; left: -60px !important;
+  width: 440px !important; height: 440px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, rgba(59,111,212,.05) 0%, transparent 65%) !important;
+  background-image: none !important;
+  background-size: auto !important;
+  inset: auto !important;
+  pointer-events: none !important;
+}
+
+/* Левая карточка-форма — фирменный синий */
+.calc-form-wrap {
+  background: linear-gradient(145deg, var(--accent-deeper) 0%, var(--accent) 100%) !important;
+  border: none !important;
+}
+.calc-form-wrap::before {
+  background: rgba(255,255,255,.08) !important;
+  background-image: none !important;
+  inset: auto !important;
+  top: -40px !important; right: -40px !important;
+  width: 180px !important; height: 180px !important;
+}
+
+/* Правая карточка результатов — белая с акцентами */
+.calc-results {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: none !important;
+}
+.calc-results-header { border-bottom: 1px solid var(--border) !important; }
+.calc-results-eyebrow { color: var(--text-muted) !important; }
+.calc-results-title { color: var(--text-primary) !important; }
+.calc-res-green {
+  background: linear-gradient(135deg, #EFF6FF, #DBEAFE) !important;
+  border: 1px solid rgba(59,111,212,.15) !important;
+}
+.calc-res-blue {
+  background: linear-gradient(135deg, #F0F9FF, #E0F2FE) !important;
+  border: 1px solid rgba(59,111,212,.12) !important;
+}
+.calc-res-green .calc-res-value { color: var(--accent) !important; }
+.calc-res-blue  .calc-res-value { color: var(--accent) !important; }
+.calc-res-label { color: var(--text-muted) !important; }
+.calc-res-unit  { color: var(--text-muted) !important; }
+.calc-cta-btn {
+  background: linear-gradient(135deg, var(--accent), #5B8AE8) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(59,111,212,.3) !important;
+}
+.calc-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(59,111,212,.45) !important;
+}
+
+/* Заголовок секции — тёмный (как обычно) */
+.calc-section .section-title { color: var(--text-primary) !important; }
+.calc-section .section-title .hl { color: var(--accent) !important; }
+.calc-section .section-sub { color: var(--text-secondary) !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CONTACT SECTION — светлый фон секции, синяя карточка формы
+══════════════════════════════════════════════════════════════════════════ */
+.contact-section {
+  background: var(--surface) !important;
+  padding: 72px 0 !important;
+}
+.contact-section .contact-bg-anim { display: block !important; }
+.contact-section::before { display: none !important; }
+
+/* Левая карточка — обычный светлый стиль */
+.contact-left {
+  background: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: none !important;
+}
+.contact-info-title { color: var(--text-primary) !important; }
+.contact-info-sub { color: var(--text-secondary) !important; }
+.contact-left .btn-primary {
+  background: linear-gradient(135deg, var(--accent), #5B8AE8) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 16px rgba(59,111,212,.3) !important;
+}
+.contact-left .btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(59,111,212,.45) !important;
+  background: linear-gradient(135deg, #2E60C8, var(--accent)) !important;
+}
+.contact-left .btn-outline {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+.contact-left .btn-outline:hover {
+  background: var(--accent-lite) !important;
+  color: var(--accent) !important;
+  border-color: rgba(59,111,212,.3) !important;
+  transform: translateY(-1px);
+}
+
+/* Правая карточка формы — фирменный синий (уже задан выше, оставляем) */
+
+@media (max-width: 768px) {
+  .calc-section { padding: 56px 0 !important; }
+  .contact-section { padding: 56px 0 !important; }
+}
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FOOTER — фирменный синий, полноценный
+══════════════════════════════════════════════════════════════════════════ */
+.footer {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, #1E3A6E 50%, #1A3460 100%) !important;
+  padding: 56px 0 0 !important;
+  color: #fff !important;
+  position: relative; overflow: hidden;
+}
+.footer-grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.footer-body {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  position: relative; z-index: 1;
+}
+/* Левая: бренд */
+.footer-logo-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; margin-bottom: 14px;
+}
+.footer-logo-icon {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.footer-logo-name {
+  font-size: 15px; font-weight: 600; color: #fff;
+  letter-spacing: -.01em;
+}
+.footer-brand-desc {
+  font-size: 13px; line-height: 1.7;
+  color: rgba(255,255,255,.55);
+  max-width: 280px; margin-bottom: 20px;
+}
+.footer-contacts {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.footer-contact-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; color: rgba(255,255,255,.65);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.footer-contact-link:hover { color: #fff; }
+.footer-contact-link svg { opacity: .6; flex-shrink: 0; }
+/* Средняя: навигация */
+.footer-col-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.35);
+  margin-bottom: 16px;
+}
+.footer-nav-links {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.footer-nav-links a {
+  font-size: 14px; color: rgba(255,255,255,.6);
+  text-decoration: none; transition: color .2s ease;
+}
+.footer-nav-links a:hover { color: #fff; }
+/* Правая: CTA */
+.footer-col--cta { }
+.footer-cta-text {
+  font-size: 13px; color: rgba(255,255,255,.55);
+  line-height: 1.65; margin-bottom: 16px;
+}
+.footer-btn-demo {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; justify-content: center;
+  padding: 11px 18px; border-radius: 10px;
+  background: #fff; color: var(--accent-deeper) !important;
+  font-size: 13px; font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  transition: transform .2s ease, box-shadow .2s ease;
+  margin-bottom: 8px;
+}
+.footer-btn-demo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,.28);
+}
+.footer-btn-contact {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; justify-content: center;
+  padding: 10px 18px; border-radius: 10px;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85) !important;
+  font-size: 13px; font-weight: 500;
+  text-decoration: none;
+  transition: background .2s ease, border-color .2s ease;
+}
+.footer-btn-contact:hover {
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.35);
+  color: #fff !important;
+}
+/* Нижняя полоса */
+.footer-bottom-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  padding: 18px 0;
+  font-size: 12px;
+  position: relative; z-index: 1;
+}
+.footer-copy { color: rgba(255,255,255,.4); }
+.footer-tagline { color: rgba(255,255,255,.28); font-style: italic; }
+@media (max-width: 860px) {
+  .footer-body { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .footer { padding-top: 44px !important; }
+  .footer-body { grid-template-columns: 1fr; gap: 28px; }
+  .footer-brand { grid-column: auto; }
+  .footer-tagline { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MOB-NAV — фирменный синий бургер-меню
+══════════════════════════════════════════════════════════════════════════ */
+.mob-nav {
+  display: none; position: fixed;
+  top: 64px; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(160deg, var(--accent-deeper) 0%, #1E3A6E 100%) !important;
+  z-index: 899;
+  flex-direction: column; gap: 2px;
+  padding: 20px 20px 32px;
+  overflow-y: auto;
+  border-top: 1px solid rgba(255,255,255,.12) !important;
+}
+.mob-nav.open { display: flex; }
+.mob-nav-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.mob-nav-logo {
+  display: flex; align-items: center; gap: 8px;
+}
+.mob-nav-logo-icon {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+}
+.mob-nav-logo-name {
+  font-size: 14px; font-weight: 600; color: #fff;
+}
+.mob-nav-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.3);
+  padding: 4px 12px; margin-bottom: 4px;
+}
+.mob-nav-link {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; font-weight: 400; color: rgba(255,255,255,.75) !important;
+  padding: 11px 12px; border-radius: 10px;
+  text-decoration: none;
+  transition: background .15s ease, color .15s ease;
+}
+.mob-nav-link:hover, .mob-nav-link:active {
+  background: rgba(255,255,255,.1) !important;
+  color: #fff !important;
+}
+.mob-nav-link svg { opacity: .55; flex-shrink: 0; }
+.mob-nav-sep {
+  height: 1px; background: rgba(255,255,255,.1) !important;
+  margin: 10px 0;
+}
+.mob-nav-action {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 14px; font-weight: 600;
+  padding: 13px 18px; border-radius: 12px;
+  text-decoration: none; margin-top: 4px;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.mob-nav-action--primary {
+  background: #fff;
+  color: var(--accent-deeper) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+}
+.mob-nav-action--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(0,0,0,.28);
+}
+.mob-nav-action--outline {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.85) !important;
+}
+.mob-nav-action--outline:hover {
+  background: rgba(255,255,255,.18);
+  color: #fff !important;
+}
+/* Бургер-иконка — белая поверх синего навбара */
+.nav-burger span { background: var(--text-primary); }
+.nav.scrolled .nav-burger span,
+.nav-burger span { background: var(--text-primary); }
+
+/* ══════════════════════════════════════════════════
+   NAV BUTTONS — фирменный стиль
+══════════════════════════════════════════════════ */
+.nav-right .btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  transition: all var(--tr);
+}
+.nav-right .btn-outline:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent-dark);
+  color: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(59,111,212,.18);
+}
+.nav-right .btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--accent-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  box-shadow: 0 2px 8px rgba(59,111,212,.22);
+}
+.nav-right .btn-primary:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-deeper);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59,111,212,.35);
+}
+
+/* ══════════════════════════════════════════════════
+   DEMO SECTION — синий фирменный фон
+══════════════════════════════════════════════════ */
+.demo-section {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  padding: 72px 0 72px !important;
+  position: relative;
+}
+.demo-section::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+.demo-section > .container { position: relative; z-index: 1; }
+.demo-wrapper {
+  background: rgba(255,255,255,.1) !important;
+  border: 1px solid rgba(255,255,255,.2) !important;
+  backdrop-filter: blur(2px);
+}
+.demo-wrapper::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) !important;
+}
+.demo-title { color: #fff !important; }
+.demo-sub { color: rgba(255,255,255,.8) !important; }
+.demo-callout {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+.demo-callout:hover {
+  background: rgba(255,255,255,.18) !important;
+  border-color: rgba(255,255,255,.35) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.2) !important;
+}
+.demo-callout-title { color: #fff !important; }
+.demo-callout-desc { color: rgba(255,255,255,.72) !important; }
+
+/* ══════════════════════════════════════════════════
+   WHO SECTION — «Сводите прайсы в Excel? Вы попали по адресу»
+   синий фирменный фон
+══════════════════════════════════════════════════ */
+.who-section {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  position: relative;
+}
+.who-section::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important; inset: 0 !important; pointer-events: none !important; z-index: 0 !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+.who-section > .container { position: relative; z-index: 1; }
+.who-section .section-title { color: #fff !important; }
+.who-section .section-title .hl { color: rgba(255,255,255,.88) !important; }
+.who-section .section-sub { color: rgba(255,255,255,.78) !important; }
+.who-card {
+  background: rgba(255,255,255,.1) !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+.who-card:hover {
+  background: rgba(255,255,255,.16) !important;
+  border-color: rgba(255,255,255,.32) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,.22) !important;
+}
+.who-card-role { color: rgba(255,255,255,.6) !important; }
+.who-card-title { color: #fff !important; }
+.who-card-desc { color: rgba(255,255,255,.78) !important; }
+.who-tag {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+  color: rgba(255,255,255,.85) !important;
+}
+.who-tag svg { color: rgba(255,255,255,.7) !important; }
+.who-benefits-label { color: rgba(255,255,255,.45) !important; }
+.who-benefit-item {
+  background: rgba(255,255,255,.1) !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+.who-benefit-item:hover {
+  border-color: rgba(255,255,255,.32) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.16) !important;
+}
+.wbi-icon { background: rgba(255,255,255,.15) !important; color: #fff !important; }
+.wbi-text { color: rgba(255,255,255,.8) !important; }
+
+/* ══════════════════════════════════════════════════
+   PRIVACY SECTION — «Коммерческая тайна — мы её не видим»
+   синий фирменный фон
+══════════════════════════════════════════════════ */
+.privacy-section {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+}
+.privacy-section::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+.privacy-section .section-title { color: #fff !important; }
+.privacy-section .section-title .hl { color: rgba(255,255,255,.88) !important; }
+.privacy-diagram {
+  background: rgba(255,255,255,.1) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+.privacy-diagram .mem-section-label { color: rgba(255,255,255,.5) !important; }
+.priv-row {
+  background: rgba(255,255,255,.1) !important;
+  border-color: rgba(255,255,255,.15) !important;
+}
+.priv-row:hover { border-color: rgba(255,255,255,.4) !important; }
+.priv-row-title { color: #fff !important; }
+.priv-row-desc { color: rgba(255,255,255,.6) !important; }
+.priv-arrow { color: rgba(255,255,255,.4) !important; }
+.ps-local {
+  background: rgba(255,255,255,.15) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,.25) !important;
+}
+.ps-blocked {
+  background: rgba(239,68,68,.25) !important;
+  color: #FCA5A5 !important;
+  border: 1px solid rgba(239,68,68,.35) !important;
+}
+.priv-row-title[style*="color:var(--red)"] { color: #FCA5A5 !important; }
+.mem-file-sep { background: rgba(255,255,255,.15) !important; }
+.privacy-point-title { color: #fff !important; }
+.privacy-point-desc { color: rgba(255,255,255,.75) !important; }
+.pp-blue  { background: rgba(255,255,255,.15) !important; color: #fff !important; }
+.pp-green { background: rgba(255,255,255,.15) !important; color: #fff !important; }
+.pp-amber { background: rgba(255,255,255,.15) !important; color: #fff !important; }
+/* Override priv-row inline icon backgrounds on privacy section */
+.privacy-section .priv-row-icon { background: rgba(255,255,255,.15) !important; color: #fff !important; }
+
+/* ══════════════════════════════════════════════════
+   FOOTER — минимальный, фирменный голубой
+══════════════════════════════════════════════════ */
+.footer {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  padding: 20px 0 !important;
+  position: relative; overflow: hidden;
+}
+.footer::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  z-index: 0;
+}
+.footer .container { position: relative; z-index: 1; }
+.footer-minimal {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+}
+.footer-copy  { font-size: 13px; color: rgba(255,255,255,.6); }
+.footer-tagline { font-size: 13px; color: rgba(255,255,255,.38); font-style: italic; }
+@media (max-width: 560px) {
+  .footer-minimal { flex-direction: column; gap: 6px; text-align: center; }
+  .footer-tagline { display: block !important; }
+}
+
+/* ══════════════════════════════════════════════════
+   CONTACT SECTION — весь блок в фирменном голубом
+══════════════════════════════════════════════════ */
+.contact-section {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  padding: 80px 0 !important;
+  position: relative; overflow: hidden;
+}
+.contact-section::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important; inset: 0 !important; pointer-events: none !important; z-index: 0 !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+}
+.contact-section .container { position: relative; z-index: 1; }
+/* скрываем анимационные блобы — не нужны на синем */
+.contact-section .contact-bg-anim { display: none !important; }
+
+/* Левая часть — текст и кнопки на синем */
+.contact-left {
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.15) !important;
+  backdrop-filter: none !important;
+}
+.contact-info-title { color: #fff !important; }
+.contact-info-sub   { color: rgba(255,255,255,.75) !important; }
+.contact-left .btn-primary {
+  background: #fff !important;
+  color: var(--accent-deeper) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18) !important;
+}
+.contact-left .btn-primary:hover {
+  background: #f0f4ff !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,.28) !important;
+  transform: translateY(-1px);
+}
+.contact-left .btn-outline {
+  background: rgba(255,255,255,.1) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.28) !important;
+}
+.contact-left .btn-outline:hover {
+  background: rgba(255,255,255,.2) !important;
+  border-color: rgba(255,255,255,.5) !important;
+  transform: translateY(-1px);
+}
+
+/* Правая карточка формы — чуть темнее на синем */
+.contact-form-wrap {
+  background: rgba(10,20,50,.45) !important;
+  border: 1px solid rgba(255,255,255,.15) !important;
+}
+.contact-form-wrap::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px) !important;
+}
+.form-glow-1, .form-glow-2 { display: none !important; }
+
+/* «Оставьте контакт» — надпись */
+.contact-form-eyebrow {
+  color: rgba(255,255,255,.5) !important;
+  font-size: 11px !important; letter-spacing: .1em !important;
+}
+/* «Узнайте цену и сроки за 5 минут» — заголовок */
+.form-title {
+  font-size: clamp(18px, 2vw, 24px) !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  line-height: 1.25 !important;
+}
+.form-title-sub { color: rgba(255,255,255,.6) !important; }
+
+/* Поле ввода */
+.form-input {
+  background: rgba(255,255,255,.1) !important;
+  border: 1.5px solid rgba(255,255,255,.2) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md) !important;
+}
+.form-input::placeholder { color: rgba(255,255,255,.38) !important; }
+.form-input:focus {
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.1) !important;
+  background: rgba(255,255,255,.14) !important;
+}
+
+/* Кнопка отправки */
+.form-btn {
+  background: #fff !important;
+  color: var(--accent-deeper) !important;
+  font-weight: 700 !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2) !important;
+  transition: all var(--tr) !important;
+}
+.form-btn:hover {
+  background: #eef2ff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 22px rgba(0,0,0,.28) !important;
+}
+
+/* Стата под формой */
+.contact-stats-row {
+  border-color: rgba(255,255,255,.12) !important;
+}
+.cs-stat { border-color: rgba(255,255,255,.12) !important; }
+.cs-stat-val { color: #fff !important; }
+.cs-stat-lbl { color: rgba(255,255,255,.45) !important; }
+
+/* Форма — сообщение об успехе */
+.form-ok-icon {
+  background: rgba(255,255,255,.15) !important;
+  color: #fff !important;
+}
+.form-ok-title { color: #fff !important; }
+.form-ok-sub   { color: rgba(255,255,255,.65) !important; }
+
+/* ══════════════════════════════════════════════════
+   1. «Никаких серверов» — белый текст + белая пилюля
+══════════════════════════════════════════════════ */
+.priv-row-title[style*="color:var(--red)"] {
+  color: #fff !important;
+}
+/* иконка строки — белый фон вместо красного */
+.privacy-section .priv-row:last-child .priv-row-icon {
+  background: rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+/* пилюля Заблокировано — белый фон, тёмный текст */
+.ps-blocked {
+  background: #fff !important;
+  color: var(--accent-deeper) !important;
+  border: 1px solid rgba(255,255,255,.6) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   2. Calc-section — фирменный голубой фон
+══════════════════════════════════════════════════ */
+.calc-section {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  position: relative;
+}
+.calc-section::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important; inset: 0 !important;
+  pointer-events: none !important; z-index: 0 !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  border-radius: 0 !important; width: auto !important; height: auto !important;
+  top: 0 !important; left: 0 !important;
+}
+.calc-section > .container { position: relative; z-index: 1; }
+/* Заголовок — белый */
+.calc-section .section-title { color: #fff !important; }
+.calc-section .section-title .hl { color: rgba(255,255,255,.88) !important; }
+.calc-section .section-sub { color: rgba(255,255,255,.75) !important; }
+/* Левая карточка формы — стекло на синем */
+.calc-form-wrap {
+  background: rgba(255,255,255,.12) !important;
+  border: 1px solid rgba(255,255,255,.2) !important;
+}
+.calc-form-wrap::before {
+  top: 0 !important; right: 0 !important; left: 0 !important; bottom: 0 !important;
+  inset: 0 !important;
+  width: auto !important; height: auto !important;
+  background: none !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+  border-radius: 0 !important;
+}
+.calc-glow-1, .calc-glow-2 { display: none !important; }
+.calc-form-title { color: #fff !important; }
+.calc-field label { color: rgba(255,255,255,.75) !important; }
+.calc-val { color: #fff !important; }
+.calc-sep { background: rgba(255,255,255,.12) !important; }
+.calc-range { accent-color: #fff; }
+/* Правая карточка результатов — белая на синем */
+.calc-results {
+  background: #fff !important;
+  border: none !important;
+}
+.calc-results-header { border-bottom: 1px solid var(--border) !important; }
+.calc-results-eyebrow { color: var(--text-muted) !important; }
+.calc-results-title { color: var(--text-primary) !important; }
+.calc-res-label { color: var(--text-muted) !important; }
+.calc-res-unit  { color: var(--text-muted) !important; }
+.calc-res-green .calc-res-value { color: var(--accent) !important; }
+.calc-res-blue  .calc-res-value { color: var(--accent) !important; }
+.calc-res-green { background: linear-gradient(135deg,#EFF6FF,#DBEAFE) !important; border: 1px solid rgba(59,111,212,.15) !important; }
+.calc-res-blue  { background: linear-gradient(135deg,#F0F9FF,#E0F2FE) !important; border: 1px solid rgba(59,111,212,.12) !important; }
+
+/* ══════════════════════════════════════════════════
+   3. Contact-section — светлый фон, карточки — синие
+══════════════════════════════════════════════════ */
+.contact-section {
+  background: var(--bg) !important;
+  padding: 80px 0 !important;
+  position: relative;
+}
+.contact-section::before { display: none !important; content: none !important; }
+.contact-section .contact-bg-anim { display: none !important; }
+.contact-section .container { position: relative; z-index: 1; }
+
+/* Левая карточка — фирменный синий */
+.contact-left {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  border: none !important;
+  position: relative; overflow: hidden;
+}
+.contact-left::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 36px 36px;
+  z-index: 0;
+}
+.contact-left > * { position: relative; z-index: 1; }
+.contact-info-title { color: #fff !important; }
+.contact-info-sub   { color: rgba(255,255,255,.78) !important; }
+.contact-left .btn-primary {
+  background: #fff !important;
+  color: var(--accent-deeper) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18) !important;
+}
+.contact-left .btn-primary:hover {
+  background: #f0f4ff !important;
+  box-shadow: 0 6px 24px rgba(0,0,0,.28) !important;
+  transform: translateY(-1px);
+}
+.contact-left .btn-outline {
+  background: rgba(255,255,255,.12) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.3) !important;
+}
+.contact-left .btn-outline:hover {
+  background: rgba(255,255,255,.22) !important;
+  border-color: rgba(255,255,255,.55) !important;
+  transform: translateY(-1px);
+}
+
+/* Правая карточка (форма) — тоже фирменный синий */
+.contact-form-wrap {
+  background: linear-gradient(135deg, var(--accent-deeper) 0%, var(--accent) 60%, #4F87E8 100%) !important;
+  border: none !important;
+  position: relative; overflow: hidden;
+}
+.contact-form-wrap::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+}
+.form-glow-1, .form-glow-2 { display: none !important; }
+.contact-form-eyebrow { color: rgba(255,255,255,.55) !important; }
+.form-title { color: #fff !important; }
+.form-title-sub { color: rgba(255,255,255,.65) !important; }
+.form-input {
+  background: rgba(255,255,255,.12) !important;
+  border: 1.5px solid rgba(255,255,255,.22) !important;
+  color: #fff !important;
+}
+.form-input::placeholder { color: rgba(255,255,255,.4) !important; }
+.form-input:focus {
+  border-color: rgba(255,255,255,.55) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.1) !important;
+  background: rgba(255,255,255,.16) !important;
+}
+.form-btn {
+  background: #fff !important; color: var(--accent-deeper) !important;
+  border: none !important; font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2) !important;
+}
+.form-btn:hover {
+  background: #eef2ff !important;
+  box-shadow: 0 6px 22px rgba(0,0,0,.28) !important;
+  transform: translateY(-1px) !important;
+}
+.contact-stats-row { border-color: rgba(255,255,255,.14) !important; }
+.cs-stat { border-color: rgba(255,255,255,.14) !important; }
+.cs-stat-val { color: #fff !important; }
+.cs-stat-lbl { color: rgba(255,255,255,.48) !important; }
+.form-ok-icon { background: rgba(255,255,255,.18) !important; color: #fff !important; }
+.form-ok-title { color: #fff !important; }
+.form-ok-sub   { color: rgba(255,255,255,.65) !important; }
+
+/* ══════════════════════════════════════════════════
+   4. Converter — убрать анимацию на десктопе, оставить стрелку
+══════════════════════════════════════════════════ */
+/* Убираем анимацию влёта у файлов */
+@media (min-width: 769px) {
+  .converter-file {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cvf-1, .cvf-2, .cvf-3, .cvf-4 {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  /* Убираем пульсирующие точки, оставляем только стрелку */
+  .converter-arrow-track { display: none !important; }
+  .converter-arrow-dot  { display: none !important; }
+  /* Стрелка остаётся, делаем её чуть крупнее */
+  .converter-arrowhead { margin-top: 0 !important; }
+  .converter-arrow-line {
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+/* ══════════════════════════════════════════════════
+   LEFT-ALIGN helper
+══════════════════════════════════════════════════ */
+.section-left { text-align: left; }
+.section-left .section-sub { max-width: 640px; margin: 0; }
+
+/* ══════════════════════════════════════════════════
+   ВСЕ ИКОНКИ НА БЕЛОМ ФОНЕ → СИНИЕ
+══════════════════════════════════════════════════ */
+.fi-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
+.fi-amber  { background: var(--accent-bg) !important; color: var(--accent) !important; }
+.fi-red    { background: var(--accent-bg) !important; color: var(--accent) !important; }
+
+.pain-card-pain-icon {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+
+.faq-q-icon {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+
+/* who-card: зелёный аватар → синий */
+.who-card-avatar[style*="#F0FDF4"] { background: #EEF2FF !important; }
+.who-card-avatar[style*="#F0FDF4"] svg { stroke: var(--accent) !important; }
+
+/* ══════════════════════════════════════════════════
+   КАЛЬКУЛЯТОР — убрать клеточки
+══════════════════════════════════════════════════ */
+.calc-section::before {
+  background-image: none !important;
+  background: none !important;
+}
+.calc-form-wrap::before {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   КНОПКА «Отправить» — синяя, иконка и текст белые
+══════════════════════════════════════════════════ */
+.form-btn {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(59,111,212,.35) !important;
+}
+.form-btn svg { stroke: #fff !important; color: #fff !important; }
+.form-btn:hover {
+  background: var(--accent-dark) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 22px rgba(59,111,212,.5) !important;
+  transform: translateY(-1px) !important;
+}
+.form-btn:active { transform: translateY(0) !important; }
+/* ══════════════════════════════════════════════════
+   PRIVACY — все иконки в блоке синие
+══════════════════════════════════════════════════ */
+/* Иконки pp-green, pp-amber → синие */
+.pp-green { background: var(--accent-bg) !important; color: var(--accent) !important; }
+.pp-amber { background: var(--accent-bg) !important; color: var(--accent) !important; }
+
+/* Иконки priv-row со стилями inline */
+.privacy-section .priv-row-icon[style*="green"],
+.privacy-section .priv-row-icon[style*="green-bg"] {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+/* Зелёная иконка щита (Результат) */
+.privacy-section .priv-row-icon[style*="var(--green"] {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+/* Все иконки priv-row кроме красной "Никаких серверов" */
+.privacy-section .priv-row:not(:last-child) .priv-row-icon {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   КАЛЬКУЛЯТОР — стиль заголовка «Калькулятор экономии»
+══════════════════════════════════════════════════ */
+.calc-form-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .12em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,.55) !important;
+  margin-bottom: 24px !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid rgba(255,255,255,.1) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   КНОПКИ — при наведении только анимация, без смены цвета
+══════════════════════════════════════════════════ */
+/* Убираем смену цвета/фона у всех btn на hover */
+.btn-primary:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent-dark) !important;
+  box-shadow: 0 4px 12px rgba(59,111,212,.25) !important;
+  transform: translateY(-1px) !important;
+}
+.btn-outline:hover {
+  background: transparent !important;
+  border-color: var(--border-strong) !important;
+  color: var(--accent) !important;
+  transform: translateY(-1px) !important;
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,.12) !important;
+}
+.btn-white:hover {
+  background: #fff !important;
+  color: var(--accent) !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12) !important;
+  transform: translateY(-1px) !important;
+}
+.calc-cta-btn:hover {
+  background: linear-gradient(135deg, var(--accent), #5B8AE8) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(59,111,212,.3) !important;
+}
+/* nav buttons */
+.nav-right .btn-outline:hover {
+  background: transparent !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  transform: translateY(-1px) !important;
+}
+.nav-right .btn-primary:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent-dark) !important;
+  transform: translateY(-1px) !important;
+}
+/* contact buttons */
+.contact-left .btn-primary:hover {
+  background: #fff !important;
+  color: var(--accent-deeper) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18) !important;
+  transform: translateY(-1px) !important;
+}
+.contact-left .btn-outline:hover {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.3) !important;
+  transform: translateY(-1px) !important;
+}
+/* form submit button */
+.form-btn:hover {
+  background: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(59,111,212,.35) !important;
+  transform: translateY(-1px) !important;
+}
+/* mob nav buttons */
+.mob-nav-action--primary:hover {
+  background: #fff !important;
+  transform: translateY(-1px) !important;
+}
+.mob-nav-action--outline:hover {
+  background: rgba(255,255,255,.1) !important;
+  transform: translateY(-1px) !important;
+}
+/* ══════════════════════════════════════════════════
+   NAV — компактнее ссылки
+══════════════════════════════════════════════════ */
+.nav-links a {
+  font-size: 13px !important;
+  padding: 5px 9px !important;
+}
+
+/* ══════════════════════════════════════════════════
+   КНОПКИ НА БЕЛОМ ФОНЕ → СИНИЕ (filled)
+   Затрагивает: nav «Обсудить задачу», hero «Как это работает»,
+   contact «Телефон» и «Попробовать», calc-cta
+══════════════════════════════════════════════════ */
+.btn-outline {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent-dark) !important;
+}
+.btn-outline:hover {
+  background: var(--accent-dark) !important;
+  border-color: var(--accent-deeper) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Исключение: outline-кнопки на синем фоне (contact-left) — оставляем белый стиль */
+.contact-left .btn-outline {
+  background: rgba(255,255,255,.12) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,.28) !important;
+}
+.contact-left .btn-outline:hover {
+  background: rgba(255,255,255,.22) !important;
+  border-color: rgba(255,255,255,.5) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* btn-ghost (how-section CTA) → синяя */
+.btn-ghost {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-color: var(--accent-dark) !important;
+}
+.btn-ghost:hover {
+  background: var(--accent-dark) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   Галочки в таблице «Почему Excel уступает» → синие
+══════════════════════════════════════════════════ */
+.cmp-yes { color: var(--accent) !important; }
+
+/* ══════════════════════════════════════════════════
+   Иконки settings_2025 (memory-section) → все синие
+══════════════════════════════════════════════════ */
+.mi-green { background: var(--accent-bg) !important; color: var(--accent) !important; }
+.mi-amber { background: var(--accent-bg) !important; color: var(--accent) !important; }
+
+/* ══════════════════════════════════════════════════
+   Иконки «Без регистрации» (privacy-section pp-*) → синие
+══════════════════════════════════════════════════ */
+.pp-green { background: var(--accent-bg) !important; color: var(--accent) !important; }
+.pp-amber { background: var(--accent-bg) !important; color: var(--accent) !important; }
+/* priv-row иконки (кроме красной «Никаких серверов») */
+.privacy-section .priv-row:not(:last-child) .priv-row-icon {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+
 </style>
 
 <body>
@@ -3008,7 +4582,6 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
       <div class="nav-links" role="navigation" aria-label="Основная навигация">
         <a href="#features">Возможности</a>
         <a href="#how">Как работает</a>
-        <a href="#compare">Сравнение</a>
         <a href="#privacy">Безопасность</a>
         <a href="#calc">Калькулятор</a>
         <a href="#faq">FAQ</a>
@@ -3016,14 +4589,14 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
       <!-- Right side -->
       <div class="nav-right">
-        <a href="#contact" class="btn btn-outline" style="font-size:13px;padding:7px 14px;">Связаться</a>
-        <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-primary" target="_blank" rel="noopener" style="font-size:13px;padding:7px 14px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 12 5 19 12"/><polyline points="12 5 12 19"/></svg>
-          Открыть демо
+        <a href="#contact" class="btn btn-outline" style="font-size:13px;padding:7px 14px;">Обсудить задачу</a>
+        <a href="https://erofly83-arch.github.io/demo/" class="btn btn-primary" target="_blank" rel="noopener" style="font-size:13px;padding:7px 14px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Запустить демо
         </a>
         <!-- Mobile only small CTA -->
-        <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-primary nav-cta-mobile" target="_blank" rel="noopener" style="font-size:12px;padding:6px 12px;display:none;">
-          Открыть
+        <a href="https://erofly83-arch.github.io/demo/" class="btn btn-primary nav-cta-mobile" target="_blank" rel="noopener" style="font-size:12px;padding:6px 12px;display:none;">
+          Демо
         </a>
         <button class="nav-burger" id="navBurger" aria-label="Меню" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -3035,16 +4608,54 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
 <!-- Mobile nav -->
 <div class="mob-nav" id="mobNav" role="dialog" aria-label="Мобильное меню">
-  <a href="#features" class="mob-nav-link">Возможности</a>
-  <a href="#how" class="mob-nav-link">Как работает</a>
-  <a href="#compare" class="mob-nav-link">Сравнение</a>
-  <a href="#privacy" class="mob-nav-link">Безопасность</a>
-  <a href="#calc" class="mob-nav-link">Калькулятор</a>
-  <a href="#faq" class="mob-nav-link">FAQ</a>
+  <div class="mob-nav-header">
+    <div class="mob-nav-logo">
+      <div class="mob-nav-logo-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+          <rect fill="white" height="10" rx="5" width="45" x="20" y="25"/>
+          <rect fill="white" height="10" rx="5" width="30" x="20" y="45"/>
+          <rect fill="white" height="10" rx="5" width="20" x="20" y="65"/>
+          <circle cx="65" cy="55" fill="none" r="14" stroke="white" stroke-width="8"/>
+          <line stroke="white" stroke-linecap="round" stroke-width="8" x1="75" x2="85" y1="65" y2="75"/>
+        </svg>
+      </div>
+      <span class="mob-nav-logo-name">Прайс-менеджер</span>
+    </div>
+  </div>
+  <div class="mob-nav-section-label">Меню</div>
+  <a href="#features" class="mob-nav-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    Возможности
+  </a>
+  <a href="#how" class="mob-nav-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Как работает
+  </a>
+  <a href="#compare" class="mob-nav-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    Сравнение
+  </a>
+  <a href="#privacy" class="mob-nav-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Безопасность
+  </a>
+  <a href="#calc" class="mob-nav-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+    Калькулятор
+  </a>
+  <a href="#faq" class="mob-nav-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Вопросы и ответы
+  </a>
   <div class="mob-nav-sep"></div>
-  <a href="#contact" class="btn btn-outline" style="justify-content:center;">Написать нам</a>
-  <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-primary" target="_blank" rel="noopener" style="justify-content:center;margin-top:4px;">
-    Открыть демо →
+  <div class="mob-nav-section-label">Действия</div>
+  <a href="#contact" class="mob-nav-action mob-nav-action--outline">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    Обсудить задачу
+  </a>
+  <a href="https://erofly83-arch.github.io/demo/" class="mob-nav-action mob-nav-action--primary" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Запустить демо
   </a>
 </div>
 
@@ -3070,7 +4681,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
         </p>
 
         <div class="hero-cta">
-          <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-primary btn-primary-lg" target="_blank" rel="noopener">
+          <a href="https://erofly83-arch.github.io/demo/" class="btn btn-primary btn-primary-lg" target="_blank" rel="noopener">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             Попробовать демо
           </a>
@@ -3093,7 +4704,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
             <div class="browser-dots">
               <span></span><span></span><span></span>
             </div>
-            <div class="browser-url">erofly83-arch.github.io/mvp/</div>
+            <div class="browser-url">erofly83-arch.github.io/demo/</div>
           </div>
           <div class="browser-screen" id="heroBrowserScreen">
             <img src="screenshot1.png" alt="Интерфейс мониторинга цен" loading="lazy"
@@ -3145,8 +4756,9 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         100% гарантия
       </div>
-      <a href="#contact" class="btn btn-ghost" style="border-radius:var(--radius-lg);padding:10px 20px;font-size:14px;">
-        Вернуть деньги
+      <a href="#contact" class="guarantee-badge" style="text-decoration:none;cursor:pointer;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Запросить возврат
       </a>
     </div>
   </div>
@@ -3409,7 +5021,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 ══════════════════════════════════════════════ -->
 <section class="how-section" id="how" aria-labelledby="howTitle">
   <div class="container">
-    <div class="section-center reveal">
+    <div class="section-left reveal">
 <h2 class="section-title" id="howTitle">Настройте один раз — <span class="hl">Прайс Менеджер работает сам</span></h2>
       <p class="section-sub">
         Прайс-менеджер работает сам. Никакой установки, регистрации и настройки сервера. Открыли браузер — и сразу к делу.
@@ -3484,37 +5096,154 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 <!-- ══════════════════════════════════════════════
      FORMATS BANNER — animated file conversion
 ══════════════════════════════════════════════ -->
-<div class="formats-banner" aria-label="Поддерживаемые форматы">
+<!-- ══════════════════════════════════════════════
+     КОНВЕРТЕР — синий блок (замена formats-banner)
+══════════════════════════════════════════════ -->
+<section class="converter-section" aria-label="Как работает объединение прайсов">
   <div class="container">
-    <div class="formats-banner-centered">
-      <div style="text-align:center;">
-        <div class="formats-center-title" style="font-size:22px;font-weight:800;letter-spacing:-.02em;">Понимает любые форматы</div>
+
+    <!-- Заголовок -->
+    <div class="converter-header reveal">
+      <h2 class="converter-title">Загружайте прайсы в любом формате —<br class="converter-br"> получайте один сводный отчёт</h2>
+      <p class="converter-sub">XLS, XLSX, CSV — неважно как называются столбцы и какой разделитель. Программа сама разберётся и сведёт всё в одну таблицу.</p>
+    </div>
+
+    <!-- Схема: входящие файлы → обработка → результат -->
+    <div class="converter-flow reveal reveal-delay-1">
+
+      <!-- Левая часть: входящие файлы -->
+      <div class="converter-inputs">
+        <div class="converter-inputs-label">Ваши прайсы</div>
+        <div class="converter-file cvf-1">
+          <div class="cvf-ext ext-xlsx2">XLS</div>
+          <div class="cvf-info">
+            <div class="cvf-name">прайс_основной.xls</div>
+            <div class="cvf-meta">Поставщик А · 1 240 строк</div>
+          </div>
+          <svg class="cvf-ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="converter-file cvf-2">
+          <div class="cvf-ext ext-csv">CSV</div>
+          <div class="cvf-info">
+            <div class="cvf-name">supplier_prices.csv</div>
+            <div class="cvf-meta">Поставщик Б · 890 строк</div>
+          </div>
+          <svg class="cvf-ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="converter-file cvf-3">
+          <div class="cvf-ext ext-xlsx">XLSX</div>
+          <div class="cvf-info">
+            <div class="cvf-name">Поставщик_В_опт.xlsx</div>
+            <div class="cvf-meta">Поставщик В · 2 100 строк</div>
+          </div>
+          <svg class="cvf-ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="converter-file cvf-4">
+          <div class="cvf-ext ext-csv">CSV</div>
+          <div class="cvf-info">
+            <div class="cvf-name">preis_lieferant_d.csv</div>
+            <div class="cvf-meta">Поставщик Г · 640 строк</div>
+          </div>
+          <svg class="cvf-ok" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
       </div>
 
-      <div class="fmt-anim-wrap" style="max-width:680px;width:100%;overflow:visible;">
-        <div class="fmt-anim-track" style="justify-content:center;gap:18px;">
-          <div class="fmt-anim-files" id="fmtFiles" style="gap:9px;">
-            <div class="fmt-file fmt-file-in" style="--d:0s;padding:7px 14px;border-radius:10px;"><span class="fmt-file-ext ext-xlsx2" style="font-size:11px;padding:3px 7px;">XLS</span><span class="fmt-file-name" style="font-size:13px;">прайс_осн.xls</span></div>
-            <div class="fmt-file fmt-file-in" style="--d:.6s;padding:7px 14px;border-radius:10px;"><span class="fmt-file-ext ext-csv" style="font-size:11px;padding:3px 7px;">CSV</span><span class="fmt-file-name" style="font-size:13px;">supplier_2.csv</span></div>
-            <div class="fmt-file fmt-file-in" style="--d:1.2s;padding:7px 14px;border-radius:10px;"><span class="fmt-file-ext ext-xlsx" style="font-size:11px;padding:3px 7px;">XLSX</span><span class="fmt-file-name" style="font-size:13px;">Поставщик1.xlsx</span></div>
-            <div class="fmt-file fmt-file-in" style="--d:1.8s;padding:7px 14px;border-radius:10px;"><span class="fmt-file-ext ext-csv" style="font-size:11px;padding:3px 7px;">CSV</span><span class="fmt-file-name" style="font-size:13px;">prices_export.csv</span></div>
+      <!-- Центр: пульсирующая стрелка -->
+      <div class="converter-middle">
+        <div class="converter-arrow-line">
+          <div class="converter-arrow-track">
+            <div class="converter-arrow-dot"></div>
+            <div class="converter-arrow-dot" style="animation-delay:.4s"></div>
+            <div class="converter-arrow-dot" style="animation-delay:.8s"></div>
           </div>
-          <div class="fmt-anim-arrow" style="gap:7px;">
-            <div class="fmt-anim-gear">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
-            </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          <svg class="converter-arrowhead" width="12" height="20" viewBox="0 0 12 20" fill="none"><polyline points="2 2 10 10 2 18" stroke="rgba(255,255,255,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <!-- Правая часть: результат -->
+      <div class="converter-output">
+        <div class="converter-inputs-label">Один сводный отчёт</div>
+        <div class="converter-result-mock">
+          <!-- Мок-шапка таблицы -->
+          <div class="crm-header">
+            <div class="crm-col crm-col--name">Товар / Штрихкод</div>
+            <div class="crm-col crm-col--sup">Пост. А</div>
+            <div class="crm-col crm-col--sup">Пост. Б</div>
+            <div class="crm-col crm-col--sup">Пост. В</div>
+            <div class="crm-col crm-col--min">Мин. цена</div>
           </div>
-          <div class="fmt-file-out" style="padding:12px 20px;border-radius:12px;">
-            <span class="fmt-file-ext ext-xlsx" style="font-size:11px;padding:3px 7px;">XLSX</span>
-            <span class="fmt-file-name-out" style="font-size:14px;font-weight:700;">результат.xlsx</span>
-            <span class="fmt-out-badge" style="font-size:10px;padding:3px 8px;">готово</span>
+          <!-- Строки таблицы -->
+          <div class="crm-row">
+            <div class="crm-col crm-col--name"><span class="crm-name">Масло моторное 5W-30</span><span class="crm-bc">4607177450123</span></div>
+            <div class="crm-col crm-col--sup crm-price">850 ₽</div>
+            <div class="crm-col crm-col--sup crm-price">910 ₽</div>
+            <div class="crm-col crm-col--sup crm-price">830 ₽</div>
+            <div class="crm-col crm-col--min crm-price crm-price--min">830 ₽</div>
+          </div>
+          <div class="crm-row crm-row--alt">
+            <div class="crm-col crm-col--name"><span class="crm-name">Фильтр масляный OC115</span><span class="crm-bc">4001558093105</span></div>
+            <div class="crm-col crm-col--sup crm-price">—</div>
+            <div class="crm-col crm-col--sup crm-price">245 ₽</div>
+            <div class="crm-col crm-col--sup crm-price">260 ₽</div>
+            <div class="crm-col crm-col--min crm-price crm-price--min">245 ₽</div>
+          </div>
+          <div class="crm-row">
+            <div class="crm-col crm-col--name"><span class="crm-name">Свечи зажигания NGK</span><span class="crm-bc">5010117831108</span></div>
+            <div class="crm-col crm-col--sup crm-price">180 ₽</div>
+            <div class="crm-col crm-col--sup crm-price">165 ₽</div>
+            <div class="crm-col crm-col--sup crm-price">—</div>
+            <div class="crm-col crm-col--min crm-price crm-price--min">165 ₽</div>
+          </div>
+          <!-- Нижняя панель результата -->
+          <div class="crm-footer">
+            <span class="crm-badge crm-badge--green">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Мин. цена выделена
+            </span>
+            <span class="crm-badge crm-badge--blue">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Экспорт в Excel
+            </span>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Три тезиса снизу -->
+    <div class="converter-facts reveal reveal-delay-2">
+      <div class="converter-fact">
+        <div class="converter-fact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="converter-fact-text">
+          <strong>XLS, XLSX, CSV</strong>
+          <span>Любой формат, любые названия столбцов</span>
+        </div>
+      </div>
+      <div class="converter-fact-sep"></div>
+      <div class="converter-fact">
+        <div class="converter-fact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="converter-fact-text">
+          <strong>Сопоставление по штрихкоду</strong>
+          <span>Автоматически, без ручных формул</span>
+        </div>
+      </div>
+      <div class="converter-fact-sep"></div>
+      <div class="converter-fact">
+        <div class="converter-fact-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="converter-fact-text">
+          <strong>Все поставщики в одной таблице</strong>
+          <span>Сразу видно у кого дешевле</span>
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
+</section>
 
 <!-- ══════════════════════════════════════════════
      РЕЗУЛЬТАТ — СВОДНАЯ ТАБЛИЦА
@@ -3530,9 +5259,9 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
         <div class="result-screen-bar">
           <div class="browser-dots"><span></span><span></span><span></span></div>
           <div class="result-screen-bar-title">Прайс-менеджер · Мониторинг цен</div>
-          <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-primary" target="_blank" rel="noopener" style="padding:6px 14px;font-size:12px;min-height:32px;">
+          <a href="https://erofly83-arch.github.io/demo/" class="btn btn-primary" target="_blank" rel="noopener" style="padding:6px 14px;font-size:12px;min-height:32px;">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Открыть демо
+            Запустить
           </a>
         </div>
         <div class="result-screen-img">
@@ -3562,10 +5291,6 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 <h2 class="demo-title" id="demoTitle">Все прайсы — в одной таблице.<br>Сразу видно у кого дешевле.</h2>
           <p class="demo-sub">Нал и безнал раздельно, минимальная цена подсвечена зелёным, корзина, наценка и экспорт — всё под рукой.</p>
         </div>
-        <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-primary" target="_blank" rel="noopener" style="flex-shrink:0;align-self:flex-start;padding:11px 22px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Открыть приложение
-        </a>
       </div>
 
       <!-- Browser mockup -->
@@ -3625,7 +5350,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 <section class="features-section" id="features" aria-labelledby="featuresTitle">
   <div class="container" style="position:relative;z-index:1;">
     <div class="reveal">
-<h2 class="section-title" id="featuresTitle">Всё, что вы делаете вручную в Excel — <span class="hl">в программе происходит само</span></h2>
+<h2 class="section-title" id="featuresTitle">Всё, что вы делаете вручную в Excel — <span class="hl">в программе происходит автоматически</span></h2>
       <p class="section-sub">Восемь ключевых возможностей, которые закрывают полный цикл — от загрузки до оформления заказа.</p>
     </div>
 
@@ -3773,8 +5498,8 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
       <div class="who-card reveal reveal-delay-3">
         <div class="who-card-left">
-          <div class="who-card-avatar" style="background:#FFFBEB;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <div class="who-card-avatar" style="background:#EEF2FF;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
         </div>
         <div class="who-card-right">
@@ -3800,8 +5525,8 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
       <div class="who-card reveal reveal-delay-4">
         <div class="who-card-left">
-          <div class="who-card-avatar" style="background:#FFF1F2;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="2"/><path d="M12 2C8 2 5 6 5 10c0 6 7 12 7 12s7-6 7-12c0-4-3-8-7-8z"/></svg>
+          <div class="who-card-avatar" style="background:#EEF2FF;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="2"/><path d="M12 2C8 2 5 6 5 10c0 6 7 12 7 12s7-6 7-12c0-4-3-8-7-8z"/></svg>
           </div>
         </div>
         <div class="who-card-right">
@@ -3884,7 +5609,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 <section class="compare-section" id="compare" aria-labelledby="compareTitle">
   <div class="container" style="position:relative;z-index:1;">
     <div class="reveal">
-<h2 class="section-title" id="compareTitle">Почему Excel и облака <span class="hl">уступают специализированному инструменту</span></h2>
+<h2 class="section-title" id="compareTitle">Почему Excel и облака <span class="hl">уступают прайс-менеджеру</span></h2>
       <p class="section-sub">Конкретные задачи мониторинга цен — конкретные причины.</p>
     </div>
 
@@ -4244,7 +5969,9 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
       <div class="calc-form-wrap reveal">
         <div class="calc-glow-1"></div>
         <div class="calc-glow-2"></div>
-        <div class="calc-form-title">Ваши данные</div>
+        <div class="calc-form-title">
+          Калькулятор экономии
+        </div>
 
         <div class="calc-field">
           <label>Мониторингов в месяц</label>
@@ -4452,7 +6179,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             +7 913 099-82-50
           </a>
-          <a href="https://erofly83-arch.github.io/mvp/" class="btn btn-outline contact-cta-btn" target="_blank" rel="noopener">
+          <a href="https://erofly83-arch.github.io/demo/" class="btn btn-outline contact-cta-btn" target="_blank" rel="noopener">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             Попробовать
           </a>
@@ -4515,8 +6242,8 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-minimal">
-      <span class="footer-copy">© 2026 Прайс Менеджер</span>
-      <span class="footer-tagline">Пока вы занимаетесь рутиной, ваши конкуренты зарабатывают</span>
+      <span class="footer-copy">© 2026 Прайс-менеджер. Все права защищены.</span>
+      <span class="footer-tagline">Пока вы занимаетесь рутиной, конкуренты зарабатывают</span>
     </div>
   </div>
 </footer>
@@ -4646,9 +6373,8 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-/* ── Contact form → Telegram ── */
-var TG_BOT = '8050836637:AAGuIwHBDNf92mHOIWNgsBGtsKLvWaAqbIc';
-var TG_CID = '152003022';
+/* ── Contact form → Google Apps Script → Telegram ── */
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbwx02B-sEgTdtsyPZHoZUnhs0T162vB2dBLks05grDyph3CMJdA-OHAK2x-9o4aT5Sv/exec';
 
 document.getElementById('fBtn').addEventListener('click', async function() {
   const btn      = this;
@@ -4667,23 +6393,22 @@ document.getElementById('fBtn').addEventListener('click', async function() {
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Отправка…';
 
   const NL   = '\n';
-  const text = '🔔 *Новая заявка — Прайс-менеджер*' + NL + NL +
-    '📞 *Телефон:* ' + phone  + NL +
+  const text = '🔔 Новая заявка — Прайс-менеджер' + NL + NL +
+    '📞 Телефон: ' + phone + NL +
     '⏰ ' + new Date().toLocaleString('ru-RU');
 
   try {
-    const resp = await fetch('https://api.telegram.org/bot' + TG_BOT + '/sendMessage', {
+    /* Content-Type: text/plain — единственный вариант, работающий
+       в режиме no-cors без preflight. GAS читает через e.postData.contents */
+    await fetch(GAS_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CID, text, parse_mode: 'Markdown' })
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ phone, text })
     });
-    const data = await resp.json();
-    if (data.ok) {
-      document.getElementById('cForm').style.display = 'none';
-      document.getElementById('formOk').style.display = 'block';
-    } else {
-      throw new Error(data.description || 'Telegram error');
-    }
+    /* no-cors всегда возвращает opaque-ответ, исключение = сеть упала */
+    document.getElementById('cForm').style.display = 'none';
+    document.getElementById('formOk').style.display = 'block';
   } catch (err) {
     btn.disabled = false;
     btn.innerHTML = origHTML;
