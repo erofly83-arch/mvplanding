@@ -49,7 +49,7 @@
   --shadow-lg:     0 12px 48px rgba(59,111,212,.16);
   --shadow-card:   0 2px 12px rgba(26,29,35,.06);
   --tr:            .25s cubic-bezier(.4,0,.2,1);
-  --white:         #ffffff;
+  --white:         #ffffff; /* = --surface, kept for legacy refs */
   --space-xs:      8px;
   --space-sm:      16px;
   --space-md:      24px;
@@ -64,7 +64,6 @@ body {
   color: var(--text-primary);
   background: var(--surface);
   line-height: 1.6;
-  overflow-x: clip;
 }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
@@ -88,7 +87,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-color: var(--accent-dark);
 }
 .btn-primary:hover {
-  background: var(--accent-dark);
+  background: var(--accent);
   box-shadow: 0 6px 20px rgba(59,111,212,.35);
   transform: translateY(-1px);
 }
@@ -98,8 +97,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-color: var(--border-strong);
 }
 .btn-outline:hover {
-  border-color: var(--accent);
-  background: var(--accent-lite);
+  border-color: var(--border-strong);
+  background: transparent;
   transform: translateY(-1px);
 }
 .btn-outline-lg { padding: 13px 26px; font-size: 15px; border-radius: var(--radius-lg); border-width: 1.5px; min-height: 48px; }
@@ -111,7 +110,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: rgba(255,255,255,.12); color: var(--white);
   border-color: rgba(255,255,255,.25);
 }
-.btn-ghost:hover { background: rgba(255,255,255,.22); }
+.btn-ghost:hover { background: rgba(255,255,255,.12); }
 
 /* ── Section headers ── */
 .section-badge {
@@ -122,7 +121,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 99px; margin-bottom: 16px;
   border: 1px solid rgba(59,111,212,.15);
 }
-.section-title { font-family: 'Inter', sans-serif;
+.section-title {
   font-size: clamp(22px, 2.6vw, 34px);
   font-weight: 700; line-height: 1.2;
   color: var(--text-primary);
@@ -143,33 +142,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .section-center .section-sub { max-width: 600px; margin: 0 auto; }
 
 
-/* ── Grid patterns for all sections ── */
-/* White/light surfaces */
-.how-section::before,
-.demo-section::before,
-.calc-section::before,
-.who-section::before,
-.contact-section::before,
-.privacy-section::before {
-  content: '';
-  position: absolute; inset: 0; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(59,111,212,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,111,212,.045) 1px, transparent 1px);
-  background-size: 48px 48px;
-  z-index: 0;
-}
-/* Alt-bg sections */
-.pain-section::before,
-.features-section::before,
-.compare-section::before,
-.memory-section::before,
-.faq-section::before {
-  background-image:
-    linear-gradient(rgba(59,111,212,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,111,212,.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
+/* Grid patterns — unified below in UNIFIED SECTION BACKGROUNDS */
 /* Trust bar */
 .trust-bar {
   position: relative; overflow: hidden;
@@ -401,7 +374,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   50% { box-shadow: 0 0 0 6px rgba(22,163,74,.1); }
 }
 .hero-title {
-  font-family: 'Inter', sans-serif;
   font-size: clamp(26px, 3vw, 42px);
   font-weight: 800; line-height: 1.15;
   color: var(--text-primary); letter-spacing: -.025em;
@@ -613,7 +585,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-top: 14px;
   border-top: 1px solid rgba(255,255,255,.15);
 }
-.guarantee-inner { flex-wrap: wrap; }
+
 
 /* ══════════════════════════════════════════════════
    FORMATS BANNER — animated, guarantee strip style
@@ -736,34 +708,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 900px) { .fmt-anim-wrap { display: none; } }
 @media (max-width: 680px) { .formats-facts { display: none; } }
 
-/* TRUST BAR (legacy, unused) */
-.trust-bar { display: none; }
-.trust-item {
-  display: flex; flex-direction: column;
-  align-items: center; text-align: left;
-  padding: 20px 16px;
-  border-right: 1px solid var(--border);
-  position: relative;
-  transition: background var(--tr);
-}
-.trust-item:last-child { border-right: none; }
-.trust-item:hover { background: var(--accent-lite); }
-.trust-item-icon {
-  width: 36px; height: 36px;
-  background: var(--accent-bg); border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: var(--space-xs); flex-shrink: 0;
-  transition: transform var(--tr);
-}
-.trust-item:hover .trust-item-icon { transform: scale(1.1); }
-.trust-item-num {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(15px, 1.6vw, 17px); font-weight: 700;
-  color: var(--text-primary); line-height: 1;
-  margin-bottom: 5px; letter-spacing: -.02em;
-}
-.trust-item-num .u { font-size: 14px; color: var(--accent); font-family: 'Inter', sans-serif; }
-.trust-item-lbl { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+/* trust-bar removed (display:none, unused) */
 
 /* ══════════════════════════════════════════════════
    PAIN → SOLUTIONS
@@ -1056,8 +1001,7 @@ h2 { letter-spacing: -.02em; }
 .result-chips { gap: 8px; }
 .result-chip { font-size: 12px; padding: 5px 12px; }
 
-/* Smooth scroll */
-html { scroll-behavior: smooth; }
+/* scroll-behavior: smooth (already set on <html>) */
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
@@ -1071,7 +1015,7 @@ html { scroll-behavior: smooth; }
   background: var(--bg);
   position: relative; overflow: hidden;
 }
-.result-inner { }
+
 .result-header {
   margin-bottom: 32px;
 }
@@ -1295,7 +1239,7 @@ html { scroll-behavior: smooth; }
 .dot-green { background: var(--green); }
 .dot-amber { background: var(--amber); }
 .dot-red   { background: var(--red); }
-.demo-callout-text {}
+
 .demo-callout-title {
   font-size: 13px; font-weight: 600;
   color: var(--text-primary); margin-bottom: 3px;
@@ -1585,6 +1529,10 @@ html { scroll-behavior: smooth; }
 .cmp-part { color: #D97706; display: inline-flex; align-items: center; }
 .cmp-cell { display: flex; align-items: center; justify-content: center; gap: 5px; }
 .cmp-note { font-size: 12px; color: var(--text-secondary); }
+/* Hide ✓ — ~ symbols */
+.compare-table .cmp-yes,
+.compare-table .cmp-no,
+.compare-table .cmp-part { display: none !important; }
 
 .compare-legend {
   display: flex; align-items: center; gap: 20px;
@@ -1660,7 +1608,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* Privacy content */
-.privacy-content {}
+
 .privacy-points {
   display: flex; flex-direction: column; gap: var(--space-md);
   margin-top: var(--space-md);
@@ -1676,7 +1624,7 @@ html { scroll-behavior: smooth; }
 .pp-blue  { background: var(--accent-bg); color: var(--accent); }
 .pp-green { background: var(--green-bg); color: var(--green); }
 .pp-amber { background: var(--amber-bg); color: var(--amber); }
-.privacy-point-text {}
+
 .privacy-point-title {
   font-size: 15px; font-weight: 600; color: var(--text-primary);
   margin-bottom: 5px;
@@ -2229,7 +2177,7 @@ html { scroll-behavior: smooth; }
   font-weight: 600;
 }
 .btn-white:hover {
-  background: var(--accent-lite);
+  background: var(--white);
   box-shadow: 0 8px 24px rgba(0,0,0,.18);
   transform: translateY(-2px);
 }
@@ -2251,7 +2199,7 @@ html { scroll-behavior: smooth; }
 .final-guarantee svg { color: var(--accent); flex-shrink: 0; }
 
 /* ── CONTACT FORM ── */
-.contact-info {}
+
 .contact-info-title {
   font-size: clamp(20px, 2.2vw, 30px); font-weight: 700;
   color: var(--text-primary); line-height: 1.25;
@@ -2384,8 +2332,8 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   font-size: 12px; color: rgba(255,255,255,.45); white-space: nowrap;
 }
 .footer-tagline {
-  font-size: 12px; color: rgba(255,255,255,.35);
-  font-style: italic;
+  font-size: 12px; color: #fff;
+  font-style: normal;
 }
 @media (max-width: 600px) {
   .footer-tagline { display: none; }
@@ -2394,7 +2342,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   display: grid; grid-template-columns: 2fr 1fr 1fr;
   gap: var(--space-md); margin-bottom: var(--space-md);
 }
-.footer-brand { }
+
 .footer-logo {
   display: flex; align-items: center; gap: 10px;
   margin-bottom: 14px;
@@ -2465,6 +2413,161 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 }
 
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* ══════════════════════════════════════════════════
+   CALCULATOR — ENHANCED DESIGN
+══════════════════════════════════════════════════ */
+
+/* Animated gradient background on form card */
+@keyframes calcBgShift {
+  0%   { background-position: 0% 60%; }
+  50%  { background-position: 100% 40%; }
+  100% { background-position: 0% 60%; }
+}
+
+.calc-section .calc-form-wrap {
+  background: linear-gradient(-40deg, #1A3460, #2252A0, #1E3A6E, #2D5AB5, #173060) !important;
+  background-size: 300% 300% !important;
+  animation: calcBgShift 10s ease infinite !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 32px rgba(0,0,0,.18) !important;
+}
+
+/* Grid lines */
+.calc-section .calc-form-wrap::before {
+  content: '' !important;
+  position: absolute !important; inset: 0 !important; pointer-events: none !important; z-index: 0 !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px) !important;
+  background-size: 36px 36px !important;
+  border-radius: 0 !important; width: auto !important; height: auto !important;
+}
+.calc-section .calc-form-wrap::after { display: none !important; }
+.calc-section .calc-form-wrap > * { position: relative; z-index: 1; }
+.calc-glow-1, .calc-glow-2 { display: none !important; }
+
+/* Separator */
+.calc-section .calc-sep {
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent) !important;
+  margin: 20px 0 !important;
+}
+
+/* Field label row */
+.calc-section .calc-field label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(255,255,255,.78) !important;
+  margin-bottom: 14px !important;
+}
+
+/* Value badge */
+.calc-section .calc-val {
+  min-width: 60px !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  background: rgba(255,255,255,.14) !important;
+  padding: 4px 12px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease !important;
+  display: inline-block !important;
+}
+.calc-section .calc-val.pop {
+  transform: scale(1.14) !important;
+  background: rgba(255,255,255,.26) !important;
+  border-color: rgba(255,255,255,.4) !important;
+}
+
+/* SLIDERS — bigger, mobile-friendly */
+.calc-section .calc-range {
+  flex: 1 !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  height: 8px !important;
+  border-radius: 4px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: opacity .2s ease !important;
+}
+.calc-section .calc-range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 3px solid rgba(255,255,255,.6) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25), 0 0 0 0 rgba(255,255,255,.2) !important;
+  cursor: pointer !important;
+  transition: transform .15s ease, box-shadow .15s ease !important;
+}
+.calc-section .calc-range:active::-webkit-slider-thumb,
+.calc-section .calc-range:focus::-webkit-slider-thumb {
+  transform: scale(1.15) !important;
+  box-shadow: 0 3px 14px rgba(0,0,0,.3), 0 0 0 6px rgba(255,255,255,.18) !important;
+}
+.calc-section .calc-range::-moz-range-thumb {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 3px solid rgba(255,255,255,.6) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25) !important;
+  cursor: pointer !important;
+}
+.calc-section .calc-range::-moz-range-track {
+  height: 8px !important;
+  border-radius: 4px !important;
+}
+
+/* RESULT CARDS — flash animation */
+@keyframes calcCardFlash {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.025); box-shadow: 0 0 0 3px rgba(59,111,212,.18); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+.calc-res-card {
+  transition: transform .2s ease !important;
+}
+.calc-res-card.updating {
+  animation: calcCardFlash .45s ease forwards !important;
+}
+
+/* Value counter transition */
+.calc-res-value {
+  transition: color .3s ease !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* Progress bar under result values */
+.calc-res-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(0,0,0,.08);
+  margin-top: 8px;
+  overflow: hidden;
+}
+.calc-res-green .calc-res-bar { background: rgba(22,163,74,.12); }
+.calc-res-blue  .calc-res-bar { background: rgba(59,111,212,.12); }
+
+.calc-res-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0%;
+  transition: width .55s cubic-bezier(.4,0,.2,1);
+}
+.calc-res-green .calc-res-bar-fill {
+  background: linear-gradient(90deg, #16A34A, #4ADE80);
+}
+.calc-res-blue .calc-res-bar-fill {
+  background: linear-gradient(90deg, var(--accent), #5B8AE8);
+}
 
 /* ── Z-index fix for grid overlay sections ── */
 .how-section > .container,
@@ -2580,8 +2683,6 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 }
 
 /* ── Custom section animation ── */
-@keyframes floatY {
-  0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-6px); }
 }
 @keyframes codeTyping {
@@ -2801,25 +2902,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 .cs-stat-val { font-size: 18px; font-weight: 700; color: #fff; line-height: 1; }
 .cs-stat-lbl { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 3px; }
 
-/* ══════════════════════════════════════════════
-   GREEN → BLUE overrides (UI elements only)
-══════════════════════════════════════════════ */
-.pain-card-solution-icon { background: var(--accent-bg) !important; border-color: rgba(59,111,212,.2) !important; color: var(--accent) !important; }
-.fi-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.fb-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.pp-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.mi-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.cc-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.cr-green  { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.ps-local  { background: var(--accent-bg) !important; color: var(--accent-dark) !important; }
-.calc-res-green { background: linear-gradient(135deg,#EFF6FF,#DBEAFE) !important; border-color: rgba(59,111,212,.15) !important; }
-.calc-res-green .calc-res-value { color: var(--accent) !important; }
-.cs-pro { background: var(--accent-bg) !important; color: var(--accent-dark) !important; border-color: rgba(59,111,212,.18) !important; }
-.cs-pro svg { color: var(--accent) !important; }
-.pain-card-arrow svg { color: var(--accent) !important; }
-.dot-green { background: var(--accent) !important; }
-.form-ok-icon { background: var(--accent-bg) !important; color: var(--accent) !important; }
-.chip-green { background: var(--accent) !important; }
+/* green→blue override (first copy removed, kept below) */
 
 /* ══════════════════════════════════════════════
    ZEBRA — alternating section backgrounds
@@ -2833,33 +2916,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
    FINAL OVERRIDES — hero, green→blue, custom cards
 ══════════════════════════════════════════════ */
 
-/* Hero: browser mock fills full left-column height, image shows entirely */
-.hero-visual {
-  position: relative;
-  animation: scaleIn .7s .1s ease both;
-  display: flex; flex-direction: column;
-  height: 100%;
-}
-.hero-visual .browser-mock {
-  flex: 1;
-  display: flex; flex-direction: column;
-}
-.hero-visual .browser-screen {
-  flex: 1;
-  aspect-ratio: unset !important;
-  max-height: unset !important;
-  min-height: 260px;
-  overflow: hidden;
-}
-.hero-visual .browser-screen img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  object-position: top center;
-  cursor: zoom-in;
-  transition: opacity .2s;
-  background: var(--bg);
-}
-.hero-visual .browser-screen img:hover { opacity: .9; }
+/* .hero-visual rules (duplicate removed, kept in HERO section above) */
 
 /* Formats banner */
 .formats-banner { padding: 36px 0; }
@@ -2881,10 +2938,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   background: var(--accent) !important;
   box-shadow: 0 0 0 3px rgba(59,111,212,.25) !important;
 }
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(59,111,212,.25) !important; }
-  50%       { box-shadow: 0 0 0 6px rgba(59,111,212,.1) !important; }
-}
+
 .pain-card-solution-icon {
   background: var(--accent-bg) !important;
   border-color: rgba(59,111,212,.2) !important;
@@ -3649,7 +3703,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 }
 .footer-nav-links a:hover { color: #fff; }
 /* Правая: CTA */
-.footer-col--cta { }
+
 .footer-cta-text {
   font-size: 13px; color: rgba(255,255,255,.55);
   line-height: 1.65; margin-bottom: 16px;
@@ -3694,7 +3748,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   position: relative; z-index: 1;
 }
 .footer-copy { color: rgba(255,255,255,.4); }
-.footer-tagline { color: rgba(255,255,255,.28); font-style: italic; }
+.footer-tagline { color: #fff; font-style: normal; }
 @media (max-width: 860px) {
   .footer-body { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
@@ -3785,9 +3839,8 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   color: #fff !important;
 }
 /* Бургер-иконка — белая поверх синего навбара */
-.nav-burger span { background: var(--text-primary); }
-.nav.scrolled .nav-burger span,
-.nav-burger span { background: var(--text-primary); }
+.nav-burger span,
+.nav.scrolled .nav-burger span { background: var(--text-primary); }
 
 /* ══════════════════════════════════════════════════
    NAV BUTTONS — фирменный стиль
@@ -3989,7 +4042,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   gap: 12px; flex-wrap: wrap;
 }
 .footer-copy  { font-size: 13px; color: rgba(255,255,255,.6); }
-.footer-tagline { font-size: 13px; color: rgba(255,255,255,.38); font-style: italic; }
+.footer-tagline { font-size: 13px; color: #fff; font-style: normal; }
 @media (max-width: 560px) {
   .footer-minimal { flex-direction: column; gap: 6px; text-align: center; }
   .footer-tagline { display: block !important; }
@@ -4026,23 +4079,23 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 .contact-info-sub   { color: rgba(255,255,255,.75) !important; }
 .contact-left .btn-primary {
   background: #fff !important;
-  color: var(--accent-deeper) !important;
+  color: var(--accent) !important;
   border-color: transparent !important;
   box-shadow: 0 4px 16px rgba(0,0,0,.18) !important;
 }
 .contact-left .btn-primary:hover {
-  background: #f0f4ff !important;
+  background: #fff !important;
   box-shadow: 0 6px 24px rgba(0,0,0,.28) !important;
   transform: translateY(-1px);
 }
 .contact-left .btn-outline {
-  background: rgba(255,255,255,.1) !important;
-  color: #fff !important;
-  border-color: rgba(255,255,255,.28) !important;
+  background: #fff !important;
+  color: var(--accent) !important;
+  border-color: transparent !important;
 }
 .contact-left .btn-outline:hover {
-  background: rgba(255,255,255,.2) !important;
-  border-color: rgba(255,255,255,.5) !important;
+  background: #fff !important;
+  border-color: transparent !important;
   transform: translateY(-1px);
 }
 
@@ -4074,16 +4127,16 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
 /* Поле ввода */
 .form-input {
-  background: rgba(255,255,255,.1) !important;
-  border: 1.5px solid rgba(255,255,255,.2) !important;
-  color: #fff !important;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(255,255,255,.4) !important;
+  color: var(--text-primary) !important;
   border-radius: var(--radius-md) !important;
 }
-.form-input::placeholder { color: rgba(255,255,255,.38) !important; }
+.form-input::placeholder { color: var(--text-muted) !important; }
 .form-input:focus {
-  border-color: rgba(255,255,255,.55) !important;
-  box-shadow: 0 0 0 3px rgba(255,255,255,.1) !important;
-  background: rgba(255,255,255,.14) !important;
+  border-color: rgba(255,255,255,.8) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.15) !important;
+  background: #ffffff !important;
 }
 
 /* Кнопка отправки */
@@ -4096,7 +4149,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
   transition: all var(--tr) !important;
 }
 .form-btn:hover {
-  background: #eef2ff !important;
+  background: #fff !important;
   transform: translateY(-1px) !important;
   box-shadow: 0 6px 22px rgba(0,0,0,.28) !important;
 }
@@ -5253,7 +5306,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
     <div class="result-inner reveal">
       <div class="result-header">
         <h2 class="section-title" style="margin-bottom:8px;">Вот что вы получаете <span class="hl">после мониторинга</span></h2>
-        <p class="section-sub" style="max-width:560px;">Единая сводная таблица: все поставщики, минимальная цена выделена зелёным, нал и безнал раздельно. Нажмите на цену — товар в корзину, выгрузите заказ в Excel.</p>
+        <p class="section-sub" style="max-width:580px;">Интерфейс мониторинга: все поставщики в одной таблице, минимальная цена подсвечена зелёным, нал и безнал определяются автоматически. Панель статистики сразу показывает покрытие — сколько ваших товаров нашлось у поставщиков.</p>
       </div>
       <div class="result-screen-wrap">
         <div class="result-screen-bar">
@@ -5265,22 +5318,22 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           </a>
         </div>
         <div class="result-screen-img">
-          <img src="screenshot1.png" alt="Сводная таблица мониторинга цен поставщиков" loading="lazy"
-            onerror="this.parentNode.innerHTML='<div style=\'aspect-ratio:16/7;background:linear-gradient(135deg,#EEF2FF,#F0F8FF);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;gap:8px;\'>📊 Скриншот таблицы мониторинга</div>'">
+          <img src="screenshot_monitor.png" alt="Интерфейс мониторинга цен поставщиков" loading="lazy"
+            onerror="this.parentNode.innerHTML='<div style=\'aspect-ratio:16/7;background:linear-gradient(135deg,#EEF2FF,#F0F8FF);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;gap:8px;\'>📊 Интерфейс мониторинга цен</div>'">
         </div>
       </div>
       <div class="result-chips">
-        <div class="result-chip"><span class="chip-dot chip-green"></span>Минимальная цена выделена зелёным</div>
-        <div class="result-chip"><span class="chip-dot chip-blue"></span>Нал и безнал в отдельных группах</div>
-        <div class="result-chip"><span class="chip-dot chip-amber"></span>Один клик — товар в корзину заказа</div>
-        <div class="result-chip"><span class="chip-dot chip-purple"></span>Экспорт готового заказа в Excel</div>
+        <div class="result-chip"><span class="chip-dot chip-green"></span>Минимальная цена подсвечена зелёным</div>
+        <div class="result-chip"><span class="chip-dot chip-blue"></span>Нал и безнал — автоматически в разные группы</div>
+        <div class="result-chip"><span class="chip-dot chip-amber"></span>Покрытие в %: сколько товаров нашлось у поставщиков</div>
+        <div class="result-chip"><span class="chip-dot chip-purple"></span>Фильтры: большая разница, дельта %, поиск новинок</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════
-     ДЕМО-СКРИНШОТ С АННОТАЦИЯМИ
+     ДЕМО-СКРИНШОТ EXCEL С АННОТАЦИЯМИ
 ══════════════════════════════════════════════ -->
 <section class="demo-section" id="demo" aria-labelledby="demoTitle">
   <div class="container">
@@ -5288,24 +5341,23 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
     <div class="demo-wrapper reveal">
       <div class="demo-header">
         <div class="demo-header-left">
-<h2 class="demo-title" id="demoTitle">Все прайсы — в одной таблице.<br>Сразу видно у кого дешевле.</h2>
-          <p class="demo-sub">Нал и безнал раздельно, минимальная цена подсвечена зелёным, корзина, наценка и экспорт — всё под рукой.</p>
+          <h2 class="demo-title" id="demoTitle">Все прайсы — в одной таблице.<br>Сразу видно у кого дешевле.</h2>
+          <p class="demo-sub">Один клик — и готовая сводная таблица Excel. Штрихкод, наименование, цены всех поставщиков. Нал и безнал в отдельных столбцах, минимальная цена выделена красным жирным.</p>
         </div>
       </div>
 
-      <!-- Browser mockup -->
+      <!-- Excel screenshot mockup -->
       <div class="demo-screen-wrap">
         <div class="demo-screen-bar">
           <div class="browser-dots"><span></span><span></span><span></span></div>
-          <div class="demo-screen-bar-title">Прайс-менеджер · Мониторинг цен</div>
+          <div class="demo-screen-bar-title">сравнение.xlsx — лист «Сравнение»</div>
         </div>
         <div class="demo-screen-img">
-          <!-- Замените на актуальный скриншот таблицы мониторинга -->
-          <img src="screenshot1.png"
-               alt="Таблица мониторинга цен поставщиков"
+          <img src="screenshot_excel.png"
+               alt="Сводная таблица сравнения цен поставщиков в Excel"
                loading="lazy"
                style="max-height:480px;object-fit:cover;object-position:top;"
-               onerror="this.parentNode.innerHTML='<div style=\'aspect-ratio:16/7;background:linear-gradient(135deg,#EEF2FF,#F0F8FF);display:flex;align-items:center;justify-content:center;gap:10px;color:var(--text-muted);font-size:13px;\'>📊 Скриншот мониторинга цен</div>'">
+               onerror="this.parentNode.innerHTML='<div style=\'aspect-ratio:16/7;background:linear-gradient(135deg,#EEF2FF,#F0F8FF);display:flex;align-items:center;justify-content:center;gap:10px;color:var(--text-muted);font-size:13px;\'>📊 Сводная таблица Excel</div>'">
         </div>
       </div>
 
@@ -5314,29 +5366,29 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
         <div class="demo-callout">
           <div class="demo-callout-dot dot-blue">1</div>
           <div class="demo-callout-text">
-            <div class="demo-callout-title">Статистика покрытия</div>
-            <div class="demo-callout-desc">Сколько ваших товаров нашлись у поставщиков, какое покрытие в процентах</div>
+            <div class="demo-callout-title">Штрихкод — главный ключ</div>
+            <div class="demo-callout-desc">Сопоставление по EAN/штрихкоду. Один товар — одна строка, даже если у поставщиков разные коды</div>
           </div>
         </div>
         <div class="demo-callout">
           <div class="demo-callout-dot dot-green">2</div>
           <div class="demo-callout-text">
-            <div class="demo-callout-title">Минимальная цена</div>
-            <div class="demo-callout-desc">Зелёный — лучшая цена в строке. Нал и безнал определяются автоматически</div>
+            <div class="demo-callout-title">Столбцы по каждому поставщику</div>
+            <div class="demo-callout-desc">Цена нал и бн — в отдельных столбцах. Название файла — в заголовке. Сколько угодно поставщиков</div>
           </div>
         </div>
         <div class="demo-callout">
           <div class="demo-callout-dot dot-amber">3</div>
           <div class="demo-callout-text">
-            <div class="demo-callout-title">Фильтры и поиск</div>
-            <div class="demo-callout-desc">Большая разница, дельта %, поиск по названию, фильтр по категории — всё одновременно</div>
+            <div class="demo-callout-title">Минимум выделен красным жирным</div>
+            <div class="demo-callout-desc">В каждой строке минимальная цена среди поставщиков выделена автоматически — нал и бн отдельно</div>
           </div>
         </div>
         <div class="demo-callout">
           <div class="demo-callout-dot dot-red">4</div>
           <div class="demo-callout-text">
-            <div class="demo-callout-title">Корзина и экспорт</div>
-            <div class="demo-callout-desc">Режим заказа — клик по цене добавляет товар. Выгрузка готового заказа в Excel</div>
+            <div class="demo-callout-title">Готово к работе в Excel</div>
+            <div class="demo-callout-desc">Шапка заморожена, колонки штрихкодов поставщиков скрыты в группе — таблица компактна и удобна</div>
           </div>
         </div>
       </div>
@@ -5385,7 +5437,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
       <div class="feature-card reveal reveal-delay-4">
         <div class="feature-card-icon fi-green">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h5a4 4 0 0 1 0 8H8"/><line x1="6" y1="15" x2="17" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/></svg>
         </div>
         <div class="feature-card-title">Нал и безнал раздельно</div>
         <div class="feature-card-desc">Назовите колонки «нал» и «бн» — программа сгруппирует их и найдёт минимальную цену в каждой группе отдельно.</div>
@@ -5924,7 +5976,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
 
           <div class="memory-why-card">
-            <div class="mwc-icon" style="background:var(--green-bg);color:var(--green);">
+            <div class="mwc-icon" style="background:var(--accent-bg);color:var(--accent);">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
             <div class="mwc-title">Работает без интернета</div>
@@ -5932,7 +5984,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
 
           <div class="memory-why-card">
-            <div class="mwc-icon" style="background:var(--amber-bg);color:var(--amber);">
+            <div class="mwc-icon" style="background:var(--accent-bg);color:var(--accent);">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
             </div>
             <div class="mwc-title">Вы владеете данными</div>
@@ -5940,8 +5992,8 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
 
           <div class="memory-why-card">
-            <div class="mwc-icon" style="background:var(--red-bg);color:var(--red);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <div class="mwc-icon" style="background:var(--accent-bg);color:var(--accent);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h5a4 4 0 0 1 0 8H8"/><line x1="6" y1="15" x2="17" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/></svg>
             </div>
             <div class="mwc-title">Нет подписки на хранилище</div>
             <div class="mwc-desc">Облачные базы данных — это ежемесячные расходы. Ваш JSON — только у вас.</div>
@@ -6010,25 +6062,29 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
         </div>
 
         <div class="calc-res-grid">
-          <div class="calc-res-card calc-res-green">
+          <div class="calc-res-card calc-res-green" id="cardSavedHours">
             <div class="calc-res-label">Экономия часов</div>
             <div class="calc-res-value" id="resSavedHours">—</div>
             <div class="calc-res-unit">часов в год</div>
+            <div class="calc-res-bar"><div class="calc-res-bar-fill" id="barSavedHours"></div></div>
           </div>
-          <div class="calc-res-card calc-res-green">
+          <div class="calc-res-card calc-res-green" id="cardSavedMoney">
             <div class="calc-res-label">Экономия в рублях</div>
             <div class="calc-res-value" id="resSavedMoney">—</div>
             <div class="calc-res-unit">рублей в год</div>
+            <div class="calc-res-bar"><div class="calc-res-bar-fill" id="barSavedMoney"></div></div>
           </div>
-          <div class="calc-res-card calc-res-blue">
+          <div class="calc-res-card calc-res-blue" id="cardCost">
             <div class="calc-res-label">Стоимость программы</div>
             <div class="calc-res-value">14 990 ₽</div>
             <div class="calc-res-unit">разово, обучение включено</div>
+            <div class="calc-res-bar"><div class="calc-res-bar-fill" style="width:100%"></div></div>
           </div>
-          <div class="calc-res-card calc-res-blue">
+          <div class="calc-res-card calc-res-blue" id="cardROI">
             <div class="calc-res-label">Окупаемость</div>
             <div class="calc-res-value" id="resROI">—</div>
             <div class="calc-res-unit">месяцев</div>
+            <div class="calc-res-bar"><div class="calc-res-bar-fill" id="barROI"></div></div>
           </div>
         </div>
 
@@ -6038,7 +6094,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
         <a href="#contact" class="btn calc-cta-btn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Хочу сэкономить — напишите мне
+          Хочу сэкономить
         </a>
       </div>
     </div>
@@ -6086,7 +6142,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
       <div class="faq-item">
         <div class="faq-q">
-          <div class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div class="faq-q-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h5a4 4 0 0 1 0 8H8"/><line x1="6" y1="15" x2="17" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/></svg></div>
           <div class="faq-q-text">Какая стоимость и есть ли подписка?</div>
           <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
@@ -6175,11 +6231,11 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Telegram
           </a>
-          <a href="tel:+79130998250" class="btn btn-outline contact-cta-btn">
+          <a href="tel:+79130998250" class="btn btn-primary contact-cta-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             +7 913 099-82-50
           </a>
-          <a href="https://erofly83-arch.github.io/demo/" class="btn btn-outline contact-cta-btn" target="_blank" rel="noopener">
+          <a href="https://erofly83-arch.github.io/demo/" class="btn btn-primary contact-cta-btn" target="_blank" rel="noopener">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             Попробовать
           </a>
@@ -6192,7 +6248,6 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
         <div class="form-glow-1"></div>
         <div class="form-glow-2"></div>
         <div class="contact-form-header">
-          <div class="contact-form-eyebrow">Оставьте контакт</div>
           <div class="form-title">Узнайте цену и сроки<br>за 5 минут</div>
           <div class="form-title-sub">Ответим быстро — обычно в течение часа</div>
         </div>
@@ -6307,57 +6362,125 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-/* ── Calculator ── */
+/* ── Calculator (enhanced with animations) ── */
 (function() {
   const fields = [
-    { id: 'rMonths',    valId: 'valMonths',    fmt: v => v },
-    { id: 'rSalary',    valId: 'valSalary',    fmt: v => (+v).toLocaleString('ru') + ' ₽' },
-    { id: 'rMinutes',   valId: 'valMinutes',   fmt: v => v + ' ч' },
+    { id: 'rMonths',  valId: 'valMonths',  fmt: v => v },
+    { id: 'rSalary',  valId: 'valSalary',  fmt: v => (+v).toLocaleString('ru') + ' ₽' },
+    { id: 'rMinutes', valId: 'valMinutes', fmt: v => v + ' ч' },
   ];
 
+  // Animated number counter
+  function animateCounter(el, fromVal, toVal, duration) {
+    if (!el) return;
+    const startTime = performance.now();
+    const range = toVal - fromVal;
+    if (range === 0) return;
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(fromVal + range * eased);
+      el.setAttribute('data-raw', current);
+      if (el.id === 'resSavedMoney') {
+        el.textContent = current.toLocaleString('ru') + ' ₽';
+      } else {
+        el.textContent = current.toLocaleString('ru');
+      }
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Flash card on update
+  function flashCard(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('updating');
+    void el.offsetWidth; // force reflow
+    el.classList.add('updating');
+    setTimeout(() => el.classList.remove('updating'), 450);
+  }
+
+  // Update progress bar
+  function setBar(id, pct) {
+    const el = document.getElementById(id);
+    if (el) el.style.width = Math.max(0, Math.min(100, pct)) + '%';
+  }
+
+  // Track previous values for counter animation
+  let prevHours = 0, prevMoney = 0;
+
   function calc() {
-    const months        = +document.getElementById('rMonths').value;
-    const hourlyRate    = +document.getElementById('rSalary').value;
-    const manualHours   = +document.getElementById('rMinutes').value;
+    const months      = +document.getElementById('rMonths').value;
+    const hourlyRate  = +document.getElementById('rSalary').value;
+    const manualHours = +document.getElementById('rMinutes').value;
 
-    // Сессий в год
     const sessionsPerYear = months * 12;
-
-    // Итого ручных часов в год
-    const hoursNow = manualHours * sessionsPerYear;
-
-    // С программой: 5 минут на сессию
-    const hoursNew = (5 / 60) * sessionsPerYear;
-
+    const hoursNow   = manualHours * sessionsPerYear;
+    const hoursNew   = (5 / 60) * sessionsPerYear;
     const savedHours = Math.max(0, hoursNow - hoursNew);
     const savedMoney = savedHours * hourlyRate;
 
-    // Окупаемость
     const PROGRAM_COST = 14990;
-    const savedMoneyPerMonth = savedMoney / 12;
-    const roiMonths = savedMoneyPerMonth > 0 ? PROGRAM_COST / savedMoneyPerMonth : 999;
+    const savedPerMonth = savedMoney / 12;
+    const roiMonths = savedPerMonth > 0 ? PROGRAM_COST / savedPerMonth : 999;
     const roiText = roiMonths < 1 ? '< 1' : roiMonths > 120 ? '> 120' : Math.round(roiMonths).toLocaleString('ru');
 
-    document.getElementById('resHoursNow').textContent   = Math.round(hoursNow).toLocaleString('ru');
-    document.getElementById('resHoursNew').textContent   = Math.round(hoursNew).toLocaleString('ru');
-    document.getElementById('resSavedHours').textContent = Math.round(savedHours).toLocaleString('ru');
-    document.getElementById('resSavedMoney').textContent = Math.round(savedMoney).toLocaleString('ru') + ' ₽';
+    // Hidden compat fields
+    document.getElementById('resHoursNow').textContent = Math.round(hoursNow).toLocaleString('ru');
+    document.getElementById('resHoursNew').textContent = Math.round(hoursNew).toLocaleString('ru');
+
+    // Flash cards
+    flashCard('cardSavedHours');
+    flashCard('cardSavedMoney');
+    flashCard('cardROI');
+
+    // Animate counters
+    const targetHours = Math.round(savedHours);
+    const targetMoney = Math.round(savedMoney);
+    animateCounter(document.getElementById('resSavedHours'), prevHours, targetHours, 420);
+    animateCounter(document.getElementById('resSavedMoney'), prevMoney, targetMoney, 420);
+    prevHours = targetHours;
+    prevMoney = targetMoney;
+
+    // ROI — direct update (special formatting)
     const roiEl = document.getElementById('resROI');
     if (roiEl) roiEl.textContent = roiText;
+
+    // Progress bars
+    // Hours: 0–500 range feels representative
+    setBar('barSavedHours', savedHours / 480 * 100);
+    // Money: 0–1 000 000
+    setBar('barSavedMoney', savedMoney / 960000 * 100);
+    // ROI bar: full = fast payback (< 1 month), empty = slow (> 24 months)
+    const roiBarPct = roiMonths >= 999 ? 2 : Math.max(2, (1 - (Math.min(roiMonths, 24) / 24)) * 100);
+    setBar('barROI', roiBarPct);
   }
 
   fields.forEach(({ id, valId, fmt }) => {
     const range = document.getElementById(id);
     const val   = document.getElementById(valId);
     if (!range || !val) return;
+
     range.addEventListener('input', () => {
       val.textContent = fmt(range.value);
+      // Pop badge
+      val.classList.remove('pop');
+      void val.offsetWidth;
+      val.classList.add('pop');
+      setTimeout(() => val.classList.remove('pop'), 220);
+
       calc();
+
       const pct = (range.value - range.min) / (range.max - range.min) * 100;
-      range.style.background = `linear-gradient(90deg, rgba(255,255,255,.9) ${pct}%, rgba(255,255,255,.25) ${pct}%)`;
+      range.style.background = `linear-gradient(90deg, rgba(255,255,255,.9) ${pct}%, rgba(255,255,255,.2) ${pct}%)`;
     });
+
+    // Initial track fill
     const pct = (range.value - range.min) / (range.max - range.min) * 100;
-    range.style.background = `linear-gradient(90deg, rgba(255,255,255,.9) ${pct}%, rgba(255,255,255,.25) ${pct}%)`;
+    range.style.background = `linear-gradient(90deg, rgba(255,255,255,.9) ${pct}%, rgba(255,255,255,.2) ${pct}%)`;
   });
 
   calc();
@@ -6374,7 +6497,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
 });
 
 /* ── Contact form → Google Apps Script → Telegram ── */
-var GAS_URL = 'https://script.google.com/macros/s/AKfycbwx02B-sEgTdtsyPZHoZUnhs0T162vB2dBLks05grDyph3CMJdA-OHAK2x-9o4aT5Sv/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwx02B-sEgTdtsyPZHoZUnhs0T162vB2dBLks05grDyph3CMJdA-OHAK2x-9o4aT5Sv/exec';
 
 document.getElementById('fBtn').addEventListener('click', async function() {
   const btn      = this;
@@ -6416,8 +6539,6 @@ document.getElementById('fBtn').addEventListener('click', async function() {
     errBox.style.display = 'block';
   }
 });
-
-/* spin keyframe */
 
 </script>
 </body>
