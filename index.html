@@ -423,6 +423,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   animation: scaleIn .7s .1s ease both;
   display: flex; flex-direction: column;
   justify-content: stretch;
+  height: 100%;
 }
 .hero-visual .browser-mock {
   flex: 1; display: flex; flex-direction: column;
@@ -4757,10 +4758,10 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
             <div class="browser-dots">
               <span></span><span></span><span></span>
             </div>
-            <div class="browser-url">erofly83-arch.github.io/demo/</div>
+            <div class="browser-url"></div>
           </div>
           <div class="browser-screen" id="heroBrowserScreen">
-            <img src="screenshot1.png" alt="Интерфейс мониторинга цен" loading="lazy"
+            <img src="screenshot1.jpg" alt="Интерфейс мониторинга цен" loading="lazy"
               id="heroScreenImg"
               style="cursor:zoom-in;"
               onclick="document.getElementById('heroLightbox').style.display='flex'"
@@ -4772,15 +4773,7 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           </div>
         </div>
 
-        <div class="float-card fc-bottom-left">
-          <div class="float-card-icon fc-blue">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="float-card-text">
-            <div class="float-card-val">Данные у вас</div>
-            <div class="float-card-lbl">ни байта на серверах</div>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -4788,8 +4781,14 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
 
 <!-- Lightbox -->
 <div id="heroLightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:zoom-out;padding:24px;">
-  <img src="screenshot1.png" style="max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.6);" alt="Интерфейс мониторинга цен">
+  <img src="screenshot1.jpg" style="max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.6);" alt="Интерфейс мониторинга цен">
   <button onclick="event.stopPropagation();document.getElementById('heroLightbox').style.display='none'" style="position:absolute;top:20px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+</div>
+
+<!-- Universal Lightbox -->
+<div id="uniLightbox" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:zoom-out;padding:24px;">
+  <img id="uniLightboxImg" src="" style="max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 32px 80px rgba(0,0,0,.6);" alt="">
+  <button onclick="event.stopPropagation();document.getElementById('uniLightbox').style.display='none'" style="position:absolute;top:20px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
 </div>
 
 <!-- ══════════════════════════════════════════════
@@ -5318,7 +5317,9 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           </a>
         </div>
         <div class="result-screen-img">
-          <img src="screenshot_monitor.png" alt="Интерфейс мониторинга цен поставщиков" loading="lazy"
+          <img src="screenshot_monitor.jpg" alt="Интерфейс мониторинга цен поставщиков" loading="lazy"
+            style="cursor:zoom-in;"
+            onclick="var lb=document.getElementById('uniLightbox');document.getElementById('uniLightboxImg').src='screenshot_monitor.jpg';lb.style.display='flex';"
             onerror="this.parentNode.innerHTML='<div style=\'aspect-ratio:16/7;background:linear-gradient(135deg,#EEF2FF,#F0F8FF);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;gap:8px;\'>📊 Интерфейс мониторинга цен</div>'">
         </div>
       </div>
@@ -5353,10 +5354,11 @@ textarea.form-input { resize: vertical; min-height: 96px; line-height: 1.6; }
           <div class="demo-screen-bar-title">сравнение.xlsx — лист «Сравнение»</div>
         </div>
         <div class="demo-screen-img">
-          <img src="screenshot_excel.png"
+          <img src="screenshot_excel.jpg"
                alt="Сводная таблица сравнения цен поставщиков в Excel"
                loading="lazy"
-               style="max-height:480px;object-fit:cover;object-position:top;"
+               style="max-height:480px;object-fit:cover;object-position:top;cursor:zoom-in;"
+               onclick="var lb=document.getElementById('uniLightbox');document.getElementById('uniLightboxImg').src='screenshot_excel.jpg';lb.style.display='flex';"
                onerror="this.parentNode.innerHTML='<div style=\'aspect-ratio:16/7;background:linear-gradient(135deg,#EEF2FF,#F0F8FF);display:flex;align-items:center;justify-content:center;gap:10px;color:var(--text-muted);font-size:13px;\'>📊 Сводная таблица Excel</div>'">
         </div>
       </div>
@@ -6317,18 +6319,35 @@ window.addEventListener('scroll', () => {
 /* ── Burger menu ── */
 const burger = document.getElementById('navBurger');
 const mobNav = document.getElementById('mobNav');
+let _scrollY = 0;
+
+function lockBody() {
+  _scrollY = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = '-' + _scrollY + 'px';
+  document.body.style.width = '100%';
+  document.body.style.overflow = 'hidden';
+}
+function unlockBody() {
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.body.style.overflow = '';
+  window.scrollTo(0, _scrollY);
+}
+
 burger.addEventListener('click', () => {
   const open = burger.classList.toggle('open');
   mobNav.classList.toggle('open', open);
   burger.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+  open ? lockBody() : unlockBody();
 });
 document.querySelectorAll('.mob-nav a, .mob-nav-link').forEach(link => {
   link.addEventListener('click', () => {
     burger.classList.remove('open');
     mobNav.classList.remove('open');
     burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    unlockBody();
   });
 });
 
@@ -6356,8 +6375,10 @@ if (heroImg) {
 /* ── Lightbox Escape ── */
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    const lb = document.getElementById('heroLightbox');
-    if (lb) lb.style.display = 'none';
+    ['heroLightbox','uniLightbox'].forEach(id => {
+      const lb = document.getElementById(id);
+      if (lb) lb.style.display = 'none';
+    });
   }
 });
 
