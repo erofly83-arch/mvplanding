@@ -185,6 +185,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ══════════════════════════════════════════════════
    NAVIGATION
 ══════════════════════════════════════════════════ */
+
+/* Nav fixed when mobile menu is open */
+.nav.menu-open {
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+}
 .nav {
   position: sticky; top: 0; z-index: 900;
   background: rgba(255,255,255,.92);
@@ -299,29 +306,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: radial-gradient(circle, rgba(22,163,74,.07) 0%, transparent 65%);
 }
 
-/* ══ HERO IMAGE — exact height of left column, no crop ══ */
+/* ══ HERO IMAGE — browser mock wraps image naturally ══ */
 .hero-inner {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 56px; align-items: stretch;
+  gap: 56px; align-items: center;
   position: relative; z-index: 1;
 }
 .hero-content { display:flex; flex-direction:column; justify-content:center; }
 .hero-visual  { display:flex; flex-direction:column; }
-.hero-visual .browser-mock { flex:1; display:flex; flex-direction:column; min-height:0; }
+.hero-visual .browser-mock { display:flex; flex-direction:column; }
 .hero-visual .browser-bar  { flex-shrink:0; }
 .hero-visual .browser-screen {
-  flex:1; min-height:0;
   aspect-ratio: unset !important;
   max-height: unset !important;
   overflow: hidden;
-  display: flex; align-items: flex-start;
+  display: block;
+  line-height: 0;
 }
 .hero-visual .browser-screen img {
-  width:100%; height:100%;
-  object-fit: contain;
-  object-position: top center;
-  cursor: zoom-in;
+  width: 100%; height: auto;
   display: block;
+  cursor: zoom-in;
 }
 
 /* ══ FORMATS BANNER — fluid, never clips on any screen ══ */
@@ -422,17 +427,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
   animation: scaleIn .7s .1s ease both;
   display: flex; flex-direction: column;
-  justify-content: stretch;
-  height: 100%;
+  justify-content: flex-start;
 }
 .hero-visual .browser-mock {
-  flex: 1; display: flex; flex-direction: column;
+  display: flex; flex-direction: column;
 }
 .hero-visual .browser-screen {
-  flex: 1;
   aspect-ratio: unset;
   max-height: unset;
-  min-height: 240px;
 }
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(.95) translateY(16px); }
@@ -6339,6 +6341,7 @@ function unlockBody() {
 burger.addEventListener('click', () => {
   const open = burger.classList.toggle('open');
   mobNav.classList.toggle('open', open);
+  nav.classList.toggle('menu-open', open);
   burger.setAttribute('aria-expanded', open);
   open ? lockBody() : unlockBody();
 });
@@ -6346,6 +6349,7 @@ document.querySelectorAll('.mob-nav a, .mob-nav-link').forEach(link => {
   link.addEventListener('click', () => {
     burger.classList.remove('open');
     mobNav.classList.remove('open');
+    nav.classList.remove('menu-open');
     burger.setAttribute('aria-expanded', 'false');
     unlockBody();
   });
